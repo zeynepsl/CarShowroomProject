@@ -1,12 +1,14 @@
 package uniProject.carShowroomManagementSystem.entities.concretes;
 
 import java.time.LocalTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Past;
 
@@ -29,4 +31,10 @@ public class Customer {
 	@Column(name = "birth_date")
 	@Past//birthDate must be a date in the past
 	private LocalTime birthDate;
+	
+	@OneToMany(mappedBy = "customer")
+	private List<Sale> sales;
+	
+	@OneToMany(mappedBy = "customer")
+	private List<TestDrive> testDrives;
 }

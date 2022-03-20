@@ -1,10 +1,16 @@
 package uniProject.carShowroomManagementSystem.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -26,8 +32,13 @@ public class Car {
 	@Column(name = "car_id")
 	private int id;
 	
-	private int brandId;
-	private int colorId;
+	@ManyToOne
+	@JoinColumn(name = "brand_id")
+	private Brand brand;
+	
+	@ManyToOne
+	@JoinColumn(name = "color_id")
+	private Color color;
 	
 	@Column(name = "name", nullable = false)
 	@NotNull
@@ -43,4 +54,10 @@ public class Car {
 	@Column(name = "description", nullable = false)
 	@Size(min = 3, max = 30)
 	private String description;
+	
+	@OneToOne(mappedBy = "car")
+	private Sale sale;
+	
+	@OneToMany(mappedBy = "car")
+	private List<TestDrive> testDrives;
 }
