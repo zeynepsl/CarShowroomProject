@@ -1,11 +1,14 @@
 package uniProject.carShowroomManagementSystem.entities.concretes;
 
+import java.time.LocalTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.FutureOrPresent;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,5 +28,8 @@ public class Sale {
 	
 	private int carId;
 	private int customerId;
-	//private DateTime saleDate;
+	
+	@Column(name = "sale_date", nullable = false)
+	@FutureOrPresent
+	private LocalTime saleDate;
 }

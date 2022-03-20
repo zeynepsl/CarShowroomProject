@@ -6,8 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.validator.constraints.Length;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,13 +29,18 @@ public class Car {
 	private int brandId;
 	private int colorId;
 	
-	@Column(name = "name")
+	@Column(name = "name", nullable = false)
+	@NotNull
+	@Size(min = 3, max = 10)
 	private String name;
-	//model yili
 	
-	@Column(name = "price")
+	//modelYear
+	
+	@Column(name = "price", nullable = false)
+	@Positive
 	private double price;
 	
-	@Column(name = "description")
+	@Column(name = "description", nullable = false)
+	@Size(min = 3, max = 30)
 	private String description;
 }

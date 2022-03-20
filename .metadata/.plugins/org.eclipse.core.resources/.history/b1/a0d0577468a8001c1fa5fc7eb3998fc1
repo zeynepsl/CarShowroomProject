@@ -1,0 +1,38 @@
+package uniProject.carShowroomManagementSystem.entities.concretes;
+
+import java.time.LocalTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Future;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@Table(name = "testDrives")
+@AllArgsConstructor
+@NoArgsConstructor
+
+public class TestDrive {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "test_drive_id")
+	private int id;
+	
+	private int carId;
+	private int customerId;
+	
+	//testdate must be a date in the future.
+	@Future
+	private LocalTime testDate;
+	
+	@Column(name = "isConfirmByAdmin", nullable = false)
+	private boolean isConfirmByAdmin;
+}
