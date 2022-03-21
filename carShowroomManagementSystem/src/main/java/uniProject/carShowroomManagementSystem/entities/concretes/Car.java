@@ -38,7 +38,7 @@ public class Car {
 	
 	@ManyToOne
 	@JoinColumn(name = "color_id")
-	private Color color;
+	private Color carColor;
 	
 	@Column(name = "name", nullable = false)
 	@NotNull

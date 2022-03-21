@@ -33,7 +33,6 @@ public class Sale {
 	@JoinColumn(name = "car_id", referencedColumnName = "car_id")
 	private Car car;
 	
-	
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
@@ -41,4 +40,7 @@ public class Sale {
 	@Column(name = "sale_date", nullable = false)
 	@FutureOrPresent
 	private LocalTime saleDate;
+	
+	@Column(name = "is_confirm")
+	private boolean isConfirm;
 }

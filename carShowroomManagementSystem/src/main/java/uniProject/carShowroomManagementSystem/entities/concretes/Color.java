@@ -31,6 +31,6 @@ public class Color {
 	@Size(min = 3, max = 10)
 	private String name;
 	
-	@OneToMany(mappedBy = "color")
+	@OneToMany(mappedBy = "carColor")
 	private List<Car> cars;
 }

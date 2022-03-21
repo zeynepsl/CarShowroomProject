@@ -41,7 +41,7 @@ public class TestDrive {
 	@FutureOrPresent
 	private LocalTime testDate;
 	
-	@Column(name = "is_confirm_by_admin")
-	private boolean isConfirmByAdmin;
+	@Column(name = "is_confirm")
+	private boolean isConfirm;
 	
 }
