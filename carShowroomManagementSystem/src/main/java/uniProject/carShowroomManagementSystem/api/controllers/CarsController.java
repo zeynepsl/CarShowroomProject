@@ -46,10 +46,6 @@ public class CarsController {
 		return carService.getById(id);
 	}
 	
-	@PostMapping("setSaleCount")
-	public DataResult<Car> setSaleCount(int carId){
-		return carService.setSaleCount(carId);
-	}
 	
 	@GetMapping("getAll")
 	public DataResult<List<Car>> getAll() {

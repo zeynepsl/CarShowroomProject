@@ -30,6 +30,12 @@ public class CustomerManager implements CustomerService{
 	@Override
 	public Result add(CustomerDto entity) {
 		Customer customer = new Customer();
+		customer.setEmail(entity.getEmail());
+		customer.setFirstName(entity.getFirstName());
+		customer.setLastName(entity.getLastName());
+		customer.setUsername(entity.getUsername());
+		customer.setPhoneNumber(entity.getPhoneNUmber());
+		customer.setPassword(entity.getPassword());
 		customerDao.save(customer);
 		return new SuccessResult(Messages.added);
 	}

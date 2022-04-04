@@ -7,9 +7,8 @@ import uniProject.carShowroomManagementSystem.core.utilities.results.Result;
 
 
 public interface BaseService<T> {
-	public Result add(T entity);
-	public Result delete(int id);
-	public Result update(T entity);
-	public DataResult<T> getById(int id);
-	public DataResult<List<T>> getAll();
+	Result delete(int id);
+	Result update(T entity);
+	DataResult<T> getById(int id);
+	DataResult<List<T>> getAll();
 }

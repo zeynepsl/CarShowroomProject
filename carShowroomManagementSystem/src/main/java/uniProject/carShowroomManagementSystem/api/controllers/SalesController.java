@@ -2,6 +2,7 @@ package uniProject.carShowroomManagementSystem.api.controllers;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -73,7 +74,7 @@ public class SalesController {
 	}
 	
 	@GetMapping("findBySaleDateBetweenOrderBySaleCount")
-	public DataResult<List<Car>> findBySaleDateBetweenOrderBySaleCount(@RequestParam
+	public DataResult<Set<Car>> findBySaleDateBetweenOrderBySaleCount(@RequestParam
 			 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) 
 	LocalDate firstSaleDate, @RequestParam 
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) 

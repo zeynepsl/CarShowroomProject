@@ -2,6 +2,7 @@ package uniProject.carShowroomManagementSystem.business.abstracts;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import uniProject.carShowroomManagementSystem.core.business.AddService;
 import uniProject.carShowroomManagementSystem.core.business.BaseService;
@@ -16,7 +17,7 @@ public interface SaleService extends BaseService<Sale>, AddService<SaleDto>{
 	DataResult<List<Sale>> findByIsConfirmFalse();
 	
 	DataResult<List<Sale>> findBySaleDate(LocalDate saleDate);
-	DataResult<List<Car>> findBySaleDateBetweenOrderBySaleCount(LocalDate firstSaleDate, LocalDate lastSaleDate);
+	DataResult<Set<Car>> findBySaleDateBetweenOrderBySaleCount(LocalDate firstSaleDate, LocalDate lastSaleDate);
 	
 	DataResult<List<Sale>> findAllByCustomer_Id(int customerId);
 	DataResult<List<Sale>> findByCar_Id(int carId);

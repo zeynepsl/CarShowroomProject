@@ -2,7 +2,9 @@ package uniProject.carShowroomManagementSystem.business.concretes;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,9 +47,7 @@ public class SaleManager implements SaleService{
 		sale.setSaleDate(LocalDate.now());
 		
 		Car car = carService.getById(entity.getCarId()).getData(); 
-		//int saleCount = car.getSaleCount();
-		//car.setSaleCount(saleCount);
-		carService.setSaleCount(entity.getCarId());
+		//carService.setSaleCount(entity.getCarId());
 		sale.setCar(car);
 		
 		Customer customer = customerService.getById(entity.getCustomerId()).getData();
@@ -123,20 +123,23 @@ public class SaleManager implements SaleService{
 		}
 		sale.setConfirm(true);
 		
+		
+		carService.setSaleCount(sale.getCar().getId());
+		
 		saleDao.save(sale);
 		return new SuccessResult(Messages.confirmedSale);
 	}
 
 	//belirli bir tarih araligindaki en cok satilan arabalari(artan sirada) goster
 	@Override
-	public DataResult<List<Car>> findBySaleDateBetweenOrderBySaleCount(LocalDate firstSaleDate,
+	public DataResult<Set<Car>> findBySaleDateBetweenOrderBySaleCount(LocalDate firstSaleDate,
 			LocalDate lastSaleDate) {
 		List<Sale> sales = saleDao.findBySaleDateBetweenOrderByCar_SaleCount(firstSaleDate, lastSaleDate);
-		List<Car> cars = new ArrayList<Car>();
+		Set<Car> cars = new HashSet<Car>();
 		for(Sale s : sales) {
 			cars.add(s.getCar());
 		}
-		return new SuccessDataResult<List<Car>>(cars, Messages.viewed);
+		return new SuccessDataResult<Set<Car>>(cars, Messages.listed);
 	}
 
 
