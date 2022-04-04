@@ -24,4 +24,5 @@ public interface CarDao extends JpaRepository<Car, Integer>{
 	
 	List<Car> findByPriceBetween(Double startPrice, Double endPrice);
 	
+	
 }
