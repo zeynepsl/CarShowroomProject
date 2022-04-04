@@ -2,47 +2,72 @@ package uniProject.carShowroomManagementSystem.business.concretes;
 
 import java.util.List;
 
-import uniProject.carShowroomManagementSystem.business.abstracts.BrandService;
-import uniProject.carShowroomManagementSystem.core.utilities.results.DataResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.Result;
-import uniProject.carShowroomManagementSystem.entities.concretes.Brand;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import uniProject.carShowroomManagementSystem.business.abstracts.BrandService;
+import uniProject.carShowroomManagementSystem.business.constants.Messages;
+import uniProject.carShowroomManagementSystem.core.utilities.results.DataResult;
+import uniProject.carShowroomManagementSystem.core.utilities.results.ErrorDataResult;
+import uniProject.carShowroomManagementSystem.core.utilities.results.ErrorResult;
+import uniProject.carShowroomManagementSystem.core.utilities.results.Result;
+import uniProject.carShowroomManagementSystem.core.utilities.results.SuccessDataResult;
+import uniProject.carShowroomManagementSystem.core.utilities.results.SuccessResult;
+import uniProject.carShowroomManagementSystem.dataAccess.abstracts.BrandDao;
+import uniProject.carShowroomManagementSystem.entities.concretes.Brand;
+import uniProject.carShowroomManagementSystem.entities.dtos.BrandDto;
+
+@Service
 public class BrandManager implements BrandService{
 
+	private BrandDao brandDao;
+	
+	@Autowired
+	public BrandManager(BrandDao brandDao) {
+		this.brandDao = brandDao;
+	}
+
 	@Override
-	public Result add(Brand entity) {
-		// TODO Auto-generated method stub
-		return null;
+	public Result add(BrandDto entity) {
+		Brand brand = new Brand();
+		brand.setName(entity.getName());
+		brandDao.save(brand);
+		return new SuccessResult(Messages.added);
 	}
 
 	@Override
 	public Result delete(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Brand brand = getById(id).getData();
+		if(brand == null) {
+			return new ErrorResult(Messages.isNotExist);
+		}
+		brandDao.deleteById(id);
+		return new SuccessResult(Messages.deleted);
 	}
 
 	@Override
 	public Result update(Brand entity) {
-		// TODO Auto-generated method stub
-		return null;
+		brandDao.save(entity);
+		return new SuccessResult(Messages.updated);
 	}
 
 	@Override
 	public DataResult<Brand> getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Brand brand = brandDao.findById(id).orElse(null);
+		if(brand == null) {
+			return new ErrorDataResult<Brand>(null, Messages.isNotExist);
+		}
+		return new SuccessDataResult<Brand>(brand, Messages.viewed);
 	}
 
 	@Override
 	public DataResult<List<Brand>> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<Brand>>(brandDao.findAll(), Messages.listed);
 	}
 
 	@Override
 	public DataResult<List<Brand>> findByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<Brand>>(brandDao.findByName(name), Messages.listed);
 	}
 
 }

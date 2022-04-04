@@ -1,43 +1,66 @@
 package uniProject.carShowroomManagementSystem.business.concretes;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 import java.util.List;
 
-import uniProject.carShowroomManagementSystem.business.abstracts.TestDriveService;
-import uniProject.carShowroomManagementSystem.core.utilities.results.DataResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.Result;
-import uniProject.carShowroomManagementSystem.entities.concretes.TestDrive;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import uniProject.carShowroomManagementSystem.business.abstracts.TestDriveService;
+import uniProject.carShowroomManagementSystem.business.constants.Messages;
+import uniProject.carShowroomManagementSystem.core.utilities.results.DataResult;
+import uniProject.carShowroomManagementSystem.core.utilities.results.ErrorDataResult;
+import uniProject.carShowroomManagementSystem.core.utilities.results.ErrorResult;
+import uniProject.carShowroomManagementSystem.core.utilities.results.Result;
+import uniProject.carShowroomManagementSystem.core.utilities.results.SuccessDataResult;
+import uniProject.carShowroomManagementSystem.core.utilities.results.SuccessResult;
+import uniProject.carShowroomManagementSystem.dataAccess.abstracts.TestDriveDao;
+import uniProject.carShowroomManagementSystem.entities.concretes.TestDrive;
+import uniProject.carShowroomManagementSystem.entities.dtos.TestDriveDto;
+
+@Service
 public class TestDriveManager implements TestDriveService{
+	
+	private TestDriveDao testDriveDao;
+	
+	@Autowired
+	public TestDriveManager(TestDriveDao testDriveDao) {
+		this.testDriveDao = testDriveDao;
+	}
 
 	@Override
-	public Result add(TestDrive entity) {
-		// TODO Auto-generated method stub
-		return null;
+	public Result add(TestDriveDto entity) {
+		return new SuccessResult(Messages.added);
 	}
 
 	@Override
 	public Result delete(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		TestDrive testDrive = getById(id).getData();
+		if(testDrive == null) {
+			return new ErrorResult(Messages.isNotExist);
+		}
+		testDriveDao.deleteById(id);
+		return new SuccessResult(Messages.deleted);
 	}
 
 	@Override
 	public Result update(TestDrive entity) {
-		// TODO Auto-generated method stub
-		return null;
+		testDriveDao.save(entity);
+		return new SuccessResult(Messages.updated);
 	}
 
 	@Override
 	public DataResult<TestDrive> getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		TestDrive testDrive = testDriveDao.findById(id).orElse(null);
+		if(testDrive == null) {
+			return new ErrorDataResult<TestDrive>(null, Messages.isNotExist);
+		}
+		return new SuccessDataResult<TestDrive>(testDrive, Messages.viewed);
 	}
 
 	@Override
 	public DataResult<List<TestDrive>> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<TestDrive>>(testDriveDao.findAll(), Messages.listed);
 	}
 
 	@Override
@@ -53,7 +76,7 @@ public class TestDriveManager implements TestDriveService{
 	}
 
 	@Override
-	public DataResult<List<TestDrive>> findBytestDate(LocalTime testDate) {
+	public DataResult<List<TestDrive>> findBytestDate(LocalDate testDate) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -2,11 +2,15 @@ package uniProject.carShowroomManagementSystem.business.abstracts;
 
 import java.util.List;
 
+import uniProject.carShowroomManagementSystem.core.business.AddService;
 import uniProject.carShowroomManagementSystem.core.business.BaseService;
 import uniProject.carShowroomManagementSystem.core.utilities.results.DataResult;
 import uniProject.carShowroomManagementSystem.entities.concretes.Car;
+import uniProject.carShowroomManagementSystem.entities.dtos.CarDto;
 
-public interface CarService extends BaseService<Car>{
+public interface CarService extends BaseService<Car>, AddService<CarDto>{
+	DataResult<Car> setSaleCount(int carId);
+	
 	DataResult<List<Car>> findByNameStartingWith(String prefix);
 	DataResult<List<Car>> findByNameEndingWith(String suffix);
 	DataResult<List<Car>> findByNameContaining(String infix);
