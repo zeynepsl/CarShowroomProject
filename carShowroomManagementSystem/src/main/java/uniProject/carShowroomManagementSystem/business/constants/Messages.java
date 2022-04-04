@@ -17,4 +17,6 @@ public class Messages {
 	public static String listed = "listed";
 	public static String roleAddedToUser = "role assigned to user";
 	public static String validationErrors = "validation errors";
+	public static String confirmedSale = "sale confirmed";
+	public static String alreadyConfirmed = "sale already confirmed";
 }
