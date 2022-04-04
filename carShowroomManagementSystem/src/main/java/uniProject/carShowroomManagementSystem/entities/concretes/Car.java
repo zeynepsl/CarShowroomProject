@@ -10,11 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "cars")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializier", "handler", "sales"})
 
 public class Car {
 	@Id
@@ -41,23 +40,25 @@ public class Car {
 	private Color carColor;
 	
 	@Column(name = "name", nullable = false)
-	@NotNull
-	@Size(min = 3, max = 10)
+	//@Size(min = 3, max = 10)
 	private String name;
 	
 	//modelYear
 	
 	@Column(name = "price", nullable = false)
-	@Positive
 	private double price;
 	
 	@Column(name = "description", nullable = false)
-	@Size(min = 3, max = 30)
 	private String description;
 	
-	@OneToOne(mappedBy = "car")
-	private Sale sale;
-	
+	@JsonIgnoreProperties
 	@OneToMany(mappedBy = "car")
-	private List<TestDrive> testDrives;
+	private List<Sale> sales;
+	
+	@Column(name = "sale_count")
+	private int saleCount;
+	
+	/*@JsonIgnore
+	@OneToMany(mappedBy = "car")
+	private List<TestDrive> testDrives;*/
 }

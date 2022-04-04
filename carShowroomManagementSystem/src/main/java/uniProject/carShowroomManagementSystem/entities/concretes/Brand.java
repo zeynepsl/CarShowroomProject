@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "brands")
 @AllArgsConstructor
 @NoArgsConstructor
-
+@JsonIgnoreProperties({"hibernateLazyInitializier", "handler", "cars"})
 public class Brand {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +33,7 @@ public class Brand {
 	@Size(min = 3, max = 10)
 	private String name;
 	
+	@JsonIgnoreProperties
 	@OneToMany(mappedBy = "brand")
 	List<Car> cars;
 }

@@ -1,6 +1,6 @@
 package uniProject.carShowroomManagementSystem.entities.concretes;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.FutureOrPresent;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,13 +22,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class Sale {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sale_id")
 	private int id;
 	
-	@OneToOne
-	@JoinColumn(name = "car_id", referencedColumnName = "car_id")
+	@ManyToOne
+	@JoinColumn(name = "car_id")
 	private Car car;
 	
 	@ManyToOne
@@ -38,9 +37,9 @@ public class Sale {
 	private Customer customer;
 	
 	@Column(name = "sale_date", nullable = false)
-	@FutureOrPresent
-	private LocalTime saleDate;
+	private LocalDate saleDate;
 	
 	@Column(name = "is_confirm")
 	private boolean isConfirm;
+	
 }

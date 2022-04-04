@@ -1,16 +1,12 @@
 package uniProject.carShowroomManagementSystem.entities.concretes;
 
-import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.FutureOrPresent;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,7 +24,7 @@ public class TestDrive {
 	@Column(name = "test_drive_id")
 	private int id;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name = "car_id")
 	private Car car;
 	
@@ -38,8 +34,8 @@ public class TestDrive {
 	
 	//testdate must be a date in the future or present.
 	@Column(name = "test_date", nullable = false)
-	@FutureOrPresent
-	private LocalTime testDate;
+	//@FutureOrPresent
+	private LocalDate testDate;*/
 	
 	@Column(name = "is_confirm")
 	private boolean isConfirm;
