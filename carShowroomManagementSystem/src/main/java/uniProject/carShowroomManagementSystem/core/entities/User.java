@@ -1,6 +1,5 @@
  package uniProject.carShowroomManagementSystem.core.entities;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -22,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "users")
 @Data
+//Bu, tüm somut alt sınıfların ve üst sınıfın kendi tablolarında saklanacağı anlamına gelir:
 @Inheritance(strategy = InheritanceType.JOINED)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,31 +30,16 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
+	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "first_name", nullable = false)
-	private String firstName;
-	
-	@Column(name = "last_name", nullable = false)
-	private String lastName;
-	
-	@Column(name = "username", nullable = false)
+	@Column(name = "username")
 	private String username;
 	
-	@Column(name = "email", nullable = false)
+	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "phone_number", nullable = false)
-	private String phoneNumber;
-	
-	@Column(name = "nationality_id", nullable = false)
-	private String nationalityId;
-	
-	@Column(name = "birth_date", nullable = false)
-	private LocalDate birthDate;
-	
-	@Column(name = "password", nullable = false)
+	@Column(name = "password")
 	private String password;
 	
 	@ManyToMany
