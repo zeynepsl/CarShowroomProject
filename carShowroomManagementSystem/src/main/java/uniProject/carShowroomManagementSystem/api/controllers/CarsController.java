@@ -4,13 +4,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniProject.carShowroomManagementSystem.business.abstracts.CarService;
 import uniProject.carShowroomManagementSystem.core.utilities.results.DataResult;
+import uniProject.carShowroomManagementSystem.core.utilities.results.Result;
 import uniProject.carShowroomManagementSystem.entities.concretes.Car;
+import uniProject.carShowroomManagementSystem.entities.dtos.CarDto;
 
 @RestController
 @RequestMapping("/api/cars/")
@@ -20,6 +24,36 @@ public class CarsController {
 	@Autowired
 	public CarsController(CarService carService) {
 		this.carService = carService;
+	}
+	
+	@PostMapping("add")
+	public Result add(@RequestBody CarDto entity) {
+		return carService.add(entity);
+	}
+	
+	@PostMapping("delete")
+	public Result delete(@RequestParam int id) {
+		return carService.delete(id);
+	}
+
+	@PostMapping("update")
+	public Result update(Car entity) {
+		return carService.update(entity);
+	}
+
+	@GetMapping("getById")
+	public DataResult<Car> getById(@RequestParam int id) {
+		return carService.getById(id);
+	}
+	
+	@PostMapping("setSaleCount")
+	public DataResult<Car> setSaleCount(int carId){
+		return carService.setSaleCount(carId);
+	}
+	
+	@GetMapping("getAll")
+	public DataResult<List<Car>> getAll() {
+		return carService.getAll();
 	}
 	
 	@GetMapping("findByNameStartingWith")
