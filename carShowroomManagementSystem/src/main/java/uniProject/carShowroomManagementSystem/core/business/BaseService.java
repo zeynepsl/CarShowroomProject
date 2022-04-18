@@ -2,8 +2,9 @@ package uniProject.carShowroomManagementSystem.core.business;
 
 import java.util.List;
 
-import uniProject.carShowroomManagementSystem.core.utilities.results.DataResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.Result;
+import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.Result;
+
 
 
 public interface BaseService<T> {

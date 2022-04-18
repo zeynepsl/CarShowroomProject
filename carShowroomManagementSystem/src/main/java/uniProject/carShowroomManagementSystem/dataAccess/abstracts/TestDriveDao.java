@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import uniProject.carShowroomManagementSystem.entities.concretes.TestDrive;
+import uniProject.carShowroomManagementSystem.entity.concrete.TestDrive;
+
 
 public interface TestDriveDao extends JpaRepository<TestDrive, Integer>{
 	List<TestDrive> findByIsConfirmTrue();

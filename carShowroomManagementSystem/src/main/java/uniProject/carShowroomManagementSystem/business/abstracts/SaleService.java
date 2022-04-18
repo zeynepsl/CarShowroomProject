@@ -6,11 +6,11 @@ import java.util.Set;
 
 import uniProject.carShowroomManagementSystem.core.business.AddService;
 import uniProject.carShowroomManagementSystem.core.business.BaseService;
-import uniProject.carShowroomManagementSystem.core.utilities.results.DataResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.Result;
-import uniProject.carShowroomManagementSystem.entities.concretes.Car;
-import uniProject.carShowroomManagementSystem.entities.concretes.Sale;
-import uniProject.carShowroomManagementSystem.entities.dtos.SaleDto;
+import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.Result;
+import uniProject.carShowroomManagementSystem.entity.concrete.Car;
+import uniProject.carShowroomManagementSystem.entity.concrete.Sale;
+import uniProject.carShowroomManagementSystem.entity.dto.SaleDto;
 
 public interface SaleService extends BaseService<Sale>, AddService<SaleDto>{
 	DataResult<List<Sale>> findByIsConfirmTrue();

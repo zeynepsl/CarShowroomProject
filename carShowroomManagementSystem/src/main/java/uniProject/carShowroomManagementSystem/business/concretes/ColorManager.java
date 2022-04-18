@@ -7,15 +7,15 @@ import org.springframework.stereotype.Service;
 
 import uniProject.carShowroomManagementSystem.business.abstracts.ColorService;
 import uniProject.carShowroomManagementSystem.business.constants.Messages;
-import uniProject.carShowroomManagementSystem.core.utilities.results.DataResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.ErrorDataResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.ErrorResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.Result;
-import uniProject.carShowroomManagementSystem.core.utilities.results.SuccessDataResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.SuccessResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.ErrorDataResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.ErrorResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.Result;
+import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
 import uniProject.carShowroomManagementSystem.dataAccess.abstracts.ColorDao;
-import uniProject.carShowroomManagementSystem.entities.concretes.Color;
-import uniProject.carShowroomManagementSystem.entities.dtos.ColorDto;
+import uniProject.carShowroomManagementSystem.entity.concrete.Color;
+import uniProject.carShowroomManagementSystem.entity.dto.ColorDto;
 
 @Service
 public class ColorManager implements ColorService{

@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import uniProject.carShowroomManagementSystem.entities.concretes.Car;
+import uniProject.carShowroomManagementSystem.entity.concrete.Car;
+
 
 public interface CarDao extends JpaRepository<Car, Integer>{
 	List<Car> findByName(String name);

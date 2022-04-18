@@ -5,7 +5,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import uniProject.carShowroomManagementSystem.entities.concretes.Sale;
+import uniProject.carShowroomManagementSystem.entity.concrete.Sale;
+
 
 public interface SaleDao extends JpaRepository<Sale, Integer>{
 	List<Sale> findByIsConfirmTrue();

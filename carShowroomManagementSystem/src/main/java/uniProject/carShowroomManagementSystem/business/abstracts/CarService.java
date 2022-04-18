@@ -4,9 +4,9 @@ import java.util.List;
 
 import uniProject.carShowroomManagementSystem.core.business.AddService;
 import uniProject.carShowroomManagementSystem.core.business.BaseService;
-import uniProject.carShowroomManagementSystem.core.utilities.results.DataResult;
-import uniProject.carShowroomManagementSystem.entities.concretes.Car;
-import uniProject.carShowroomManagementSystem.entities.dtos.CarDto;
+import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
+import uniProject.carShowroomManagementSystem.entity.concrete.Car;
+import uniProject.carShowroomManagementSystem.entity.dto.CarDto;
 
 public interface CarService extends BaseService<Car>, AddService<CarDto>{
 	DataResult<Car> setSaleCount(int carId);

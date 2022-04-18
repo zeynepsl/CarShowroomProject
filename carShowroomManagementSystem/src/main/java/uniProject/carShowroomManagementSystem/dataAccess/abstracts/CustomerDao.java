@@ -2,7 +2,8 @@ package uniProject.carShowroomManagementSystem.dataAccess.abstracts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import uniProject.carShowroomManagementSystem.entities.concretes.Customer;
+import uniProject.carShowroomManagementSystem.entity.concrete.Customer;
+
 
 public interface CustomerDao extends JpaRepository<Customer, Integer>{
 	/*List<Customer> findByBirthDateAfter(LocalDate birthDate);

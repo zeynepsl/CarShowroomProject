@@ -2,8 +2,8 @@ package uniProject.carShowroomManagementSystem.business.abstracts;
 
 import uniProject.carShowroomManagementSystem.core.business.AddService;
 import uniProject.carShowroomManagementSystem.core.business.BaseService;
-import uniProject.carShowroomManagementSystem.core.entities.Role;
-import uniProject.carShowroomManagementSystem.entities.dtos.RoleDto;
+import uniProject.carShowroomManagementSystem.core.entity.Role;
+import uniProject.carShowroomManagementSystem.entity.dto.RoleDto;
 
 public interface RoleService extends BaseService<Role>, AddService<RoleDto>{
 

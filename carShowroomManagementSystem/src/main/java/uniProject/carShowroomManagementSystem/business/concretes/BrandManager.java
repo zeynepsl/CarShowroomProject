@@ -7,15 +7,15 @@ import org.springframework.stereotype.Service;
 
 import uniProject.carShowroomManagementSystem.business.abstracts.BrandService;
 import uniProject.carShowroomManagementSystem.business.constants.Messages;
-import uniProject.carShowroomManagementSystem.core.utilities.results.DataResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.ErrorDataResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.ErrorResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.Result;
-import uniProject.carShowroomManagementSystem.core.utilities.results.SuccessDataResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.SuccessResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.ErrorDataResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.ErrorResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.Result;
+import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
 import uniProject.carShowroomManagementSystem.dataAccess.abstracts.BrandDao;
-import uniProject.carShowroomManagementSystem.entities.concretes.Brand;
-import uniProject.carShowroomManagementSystem.entities.dtos.BrandDto;
+import uniProject.carShowroomManagementSystem.entity.concrete.Brand;
+import uniProject.carShowroomManagementSystem.entity.dto.BrandDto;
 
 @Service
 public class BrandManager implements BrandService{

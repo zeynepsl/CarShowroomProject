@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
 
 import uniProject.carShowroomManagementSystem.business.abstracts.TestDriveService;
 import uniProject.carShowroomManagementSystem.business.constants.Messages;
-import uniProject.carShowroomManagementSystem.core.utilities.results.DataResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.ErrorDataResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.ErrorResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.Result;
-import uniProject.carShowroomManagementSystem.core.utilities.results.SuccessDataResult;
-import uniProject.carShowroomManagementSystem.core.utilities.results.SuccessResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.ErrorDataResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.ErrorResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.Result;
+import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataResult;
+import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
 import uniProject.carShowroomManagementSystem.dataAccess.abstracts.TestDriveDao;
-import uniProject.carShowroomManagementSystem.entities.concretes.TestDrive;
-import uniProject.carShowroomManagementSystem.entities.dtos.TestDriveDto;
+import uniProject.carShowroomManagementSystem.entity.concrete.TestDrive;
+import uniProject.carShowroomManagementSystem.entity.dto.TestDriveDto;
 
 @Service
 public class TestDriveManager implements TestDriveService{
