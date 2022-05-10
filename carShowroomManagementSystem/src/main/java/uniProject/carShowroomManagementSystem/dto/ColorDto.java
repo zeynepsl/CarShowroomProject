@@ -1,4 +1,4 @@
-package uniProject.carShowroomManagementSystem.entity.dto;
+package uniProject.carShowroomManagementSystem.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +8,7 @@ import uniProject.carShowroomManagementSystem.core.entity.Dto;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoleDto implements Dto{
+
+public class ColorDto implements Dto{
 	String name;
 }

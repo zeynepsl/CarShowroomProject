@@ -15,7 +15,7 @@ import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataRes
 import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
 import uniProject.carShowroomManagementSystem.dataAccess.abstracts.ColorDao;
 import uniProject.carShowroomManagementSystem.entity.concrete.Color;
-import uniProject.carShowroomManagementSystem.entity.dto.ColorDto;
+import uniProject.carShowroomManagementSystem.dto.ColorDto;
 
 @Service
 public class ColorManager implements ColorService{

@@ -15,7 +15,7 @@ import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataRes
 import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
 import uniProject.carShowroomManagementSystem.dataAccess.abstracts.BrandDao;
 import uniProject.carShowroomManagementSystem.entity.concrete.Brand;
-import uniProject.carShowroomManagementSystem.entity.dto.BrandDto;
+import uniProject.carShowroomManagementSystem.dto.BrandDto;
 
 @Service
 public class BrandManager implements BrandService{

@@ -10,7 +10,7 @@ import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
 import uniProject.carShowroomManagementSystem.core.utility.result.Result;
 import uniProject.carShowroomManagementSystem.entity.concrete.Car;
 import uniProject.carShowroomManagementSystem.entity.concrete.Sale;
-import uniProject.carShowroomManagementSystem.entity.dto.SaleDto;
+import uniProject.carShowroomManagementSystem.dto.SaleDto;
 
 public interface SaleService extends BaseService<Sale>, AddService<SaleDto>{
 	DataResult<List<Sale>> findByIsConfirmTrue();

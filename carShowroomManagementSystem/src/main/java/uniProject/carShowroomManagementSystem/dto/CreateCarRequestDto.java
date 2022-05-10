@@ -1,4 +1,4 @@
-package uniProject.carShowroomManagementSystem.entity.dto;
+package uniProject.carShowroomManagementSystem.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import uniProject.carShowroomManagementSystem.core.entity.Dto;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class CarDto implements Dto{
+public class CreateCarRequestDto implements Dto{
 	private String name;
 	//modelYear
 	private double price;

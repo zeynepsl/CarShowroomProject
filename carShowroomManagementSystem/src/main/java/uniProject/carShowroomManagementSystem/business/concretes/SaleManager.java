@@ -22,7 +22,7 @@ import uniProject.carShowroomManagementSystem.dataAccess.abstracts.SaleDao;
 import uniProject.carShowroomManagementSystem.entity.concrete.Car;
 import uniProject.carShowroomManagementSystem.entity.concrete.Customer;
 import uniProject.carShowroomManagementSystem.entity.concrete.Sale;
-import uniProject.carShowroomManagementSystem.entity.dto.SaleDto;
+import uniProject.carShowroomManagementSystem.dto.SaleDto;
 
 @Service
 public class SaleManager implements SaleService{

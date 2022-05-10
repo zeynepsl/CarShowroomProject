@@ -6,9 +6,9 @@ import uniProject.carShowroomManagementSystem.core.business.AddService;
 import uniProject.carShowroomManagementSystem.core.business.BaseService;
 import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
 import uniProject.carShowroomManagementSystem.entity.concrete.Car;
-import uniProject.carShowroomManagementSystem.entity.dto.CarDto;
+import uniProject.carShowroomManagementSystem.dto.CreateCarRequestDto;
 
-public interface CarService extends BaseService<Car>, AddService<CarDto>{
+public interface CarService extends BaseService<Car>, AddService<CreateCarRequestDto>{
 	DataResult<Car> setSaleCount(int carId);
 	
 	DataResult<List<Car>> findByNameStartingWith(String prefix);

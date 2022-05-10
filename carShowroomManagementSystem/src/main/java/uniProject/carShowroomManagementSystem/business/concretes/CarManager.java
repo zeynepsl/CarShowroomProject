@@ -19,7 +19,7 @@ import uniProject.carShowroomManagementSystem.dataAccess.abstracts.CarDao;
 import uniProject.carShowroomManagementSystem.entity.concrete.Brand;
 import uniProject.carShowroomManagementSystem.entity.concrete.Car;
 import uniProject.carShowroomManagementSystem.entity.concrete.Color;
-import uniProject.carShowroomManagementSystem.entity.dto.CarDto;
+import uniProject.carShowroomManagementSystem.dto.CreateCarRequestDto;
 
 @Service
 public class CarManager implements CarService{
@@ -37,7 +37,7 @@ public class CarManager implements CarService{
 	
 	//polymorphism: inheritance yoluyla
 	@Override
-	public Result add(CarDto entity) {
+	public Result add(CreateCarRequestDto entity) {
 		Car car = new Car();
 		
 		car.setName(entity.getName());

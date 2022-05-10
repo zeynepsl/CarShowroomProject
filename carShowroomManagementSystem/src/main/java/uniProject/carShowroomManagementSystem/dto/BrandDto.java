@@ -1,4 +1,4 @@
-package uniProject.carShowroomManagementSystem.entity.dto;
+package uniProject.carShowroomManagementSystem.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;

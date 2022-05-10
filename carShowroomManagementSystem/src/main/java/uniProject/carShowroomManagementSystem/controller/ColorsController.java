@@ -14,7 +14,7 @@ import uniProject.carShowroomManagementSystem.business.abstracts.ColorService;
 import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
 import uniProject.carShowroomManagementSystem.core.utility.result.Result;
 import uniProject.carShowroomManagementSystem.entity.concrete.Color;
-import uniProject.carShowroomManagementSystem.entity.dto.ColorDto;
+import uniProject.carShowroomManagementSystem.dto.ColorDto;
 
 @RestController
 @RequestMapping("/api/colors/")

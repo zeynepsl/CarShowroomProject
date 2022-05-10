@@ -14,7 +14,7 @@ import uniProject.carShowroomManagementSystem.business.abstracts.RoleService;
 import uniProject.carShowroomManagementSystem.core.entity.Role;
 import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
 import uniProject.carShowroomManagementSystem.core.utility.result.Result;
-import uniProject.carShowroomManagementSystem.entity.dto.RoleDto;
+import uniProject.carShowroomManagementSystem.dto.RoleDto;
 
 @RestController
 @RequestMapping("/api/roles/")

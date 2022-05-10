@@ -16,7 +16,7 @@ import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataRes
 import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
 import uniProject.carShowroomManagementSystem.dataAccess.abstracts.TestDriveDao;
 import uniProject.carShowroomManagementSystem.entity.concrete.TestDrive;
-import uniProject.carShowroomManagementSystem.entity.dto.TestDriveDto;
+import uniProject.carShowroomManagementSystem.dto.TestDriveDto;
 
 @Service
 public class TestDriveManager implements TestDriveService{

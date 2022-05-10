@@ -13,7 +13,7 @@ import uniProject.carShowroomManagementSystem.business.abstracts.CustomerService
 import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
 import uniProject.carShowroomManagementSystem.core.utility.result.Result;
 import uniProject.carShowroomManagementSystem.entity.concrete.Customer;
-import uniProject.carShowroomManagementSystem.entity.dto.CustomerDto;
+import uniProject.carShowroomManagementSystem.dto.CustomerDto;
 
 @RestController
 @RequestMapping("/api/customers/")

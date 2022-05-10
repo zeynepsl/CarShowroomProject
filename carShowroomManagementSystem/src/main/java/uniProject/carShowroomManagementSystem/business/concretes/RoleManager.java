@@ -15,7 +15,7 @@ import uniProject.carShowroomManagementSystem.core.utility.result.Result;
 import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataResult;
 import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
 import uniProject.carShowroomManagementSystem.dataAccess.abstracts.RoleDao;
-import uniProject.carShowroomManagementSystem.entity.dto.RoleDto;
+import uniProject.carShowroomManagementSystem.dto.RoleDto;
 
 @Service
 public class RoleManager implements RoleService {

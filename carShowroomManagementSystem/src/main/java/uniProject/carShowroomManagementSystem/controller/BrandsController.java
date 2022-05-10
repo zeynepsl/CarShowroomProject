@@ -7,24 +7,26 @@ import javax.validation.constraints.Positive;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniProject.carShowroomManagementSystem.business.abstracts.BrandService;
 import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
 import uniProject.carShowroomManagementSystem.core.utility.result.Result;
 import uniProject.carShowroomManagementSystem.entity.concrete.Brand;
-import uniProject.carShowroomManagementSystem.entity.dto.BrandDto;
+import uniProject.carShowroomManagementSystem.dto.BrandDto;
 
 @RestController
 
 //API endpoint pathi:
 //bu path resourcelarımı karşılıyor
-@RequestMapping("/api/brands/")//hangi path e gelinmesi gerektigini beliritiyorum
+@RequestMapping("/api/")//hangi path e gelinmesi gerektigini beliritiyorum
 @Validated
 public class BrandsController {
 	private BrandService brandService;
@@ -34,36 +36,40 @@ public class BrandsController {
 		this.brandService = brandService;
 	}
 	
-	//localhost:8080/api/brands/add yazıldığında bu metot çalışmalı
-	@PostMapping("add")
-	public Result add(@RequestBody BrandDto entity) {
+	//localhost:8080/api/brands yazıldığında bu metot çalışmalı
+	//http://localhost:8080/api/brands
+	@PostMapping(path = "/brands")
+	public Result addBrand(@RequestBody BrandDto entity) {
 		return brandService.add(entity);
 	}
 	
-
-
-	@PostMapping("delete")
-	public Result delete(@RequestParam @Positive(message = "id must be positive") int id) {
-		return brandService.delete(id);
+	// http://localhost:8080/api/brands/3
+	@DeleteMapping(path = "/brands/{brandId}")
+	public Result delete(@PathVariable @Positive(message = "id must be positive") int brandId) {
+		return brandService.delete(brandId);
 	}
 
-	@PostMapping("update")
+	// http://localhost:8080/api/brands
+	@PutMapping(path = "/brands")
 	public Result update(@RequestBody @Valid Brand entity) {
 		return brandService.update(entity);
 	}
 
-	@GetMapping("getById")
-	public DataResult<Brand> getById(@RequestParam int id) {
-		return brandService.getById(id);
+	// http://localhost:8080/api/brands/3
+	@GetMapping(path = "/brands/getById/{brandId}")
+	public DataResult<Brand> getById(@PathVariable int brandId) {
+		return brandService.getById(brandId);
 	}
 
-	@GetMapping("getAll")
+	// request url --> http://localhost:8080/api/brands
+	@GetMapping(path = "/brands")
 	public DataResult<List<Brand>> getAll() {
 		return brandService.getAll();
 	}
 
-	@GetMapping("findByName")
-	public DataResult<List<Brand>> findByName(@RequestParam String name) {
+	// http://localhost:8080/api/brands/a
+	@GetMapping(path = "/brands/findByName/{name}")
+	public DataResult<List<Brand>> findByName(@PathVariable String name) {
 		return brandService.findByName(name);
 	}
 }

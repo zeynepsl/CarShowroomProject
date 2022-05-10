@@ -15,7 +15,7 @@ import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataRes
 import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
 import uniProject.carShowroomManagementSystem.dataAccess.abstracts.CustomerDao;
 import uniProject.carShowroomManagementSystem.entity.concrete.Customer;
-import uniProject.carShowroomManagementSystem.entity.dto.CustomerDto;
+import uniProject.carShowroomManagementSystem.dto.CustomerDto;
 
 @Service
 public class CustomerManager implements CustomerService{
