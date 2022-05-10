@@ -6,30 +6,32 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
 import uniProject.carShowroomManagementSystem.business.abstracts.TestDriveService;
-import uniProject.carShowroomManagementSystem.business.constants.Messages;
-import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorDataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.Result;
-import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
-import uniProject.carShowroomManagementSystem.dataAccess.abstracts.TestDriveDao;
-import uniProject.carShowroomManagementSystem.entity.concrete.TestDrive;
-import uniProject.carShowroomManagementSystem.dto.TestDriveDto;
+import uniProject.carShowroomManagementSystem.constant.Messages;
+import uniProject.carShowroomManagementSystem.converter.testdrive.TestDriveConverter;
+import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorDataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorResult;
+import uniProject.carShowroomManagementSystem.core.util.result.Result;
+import uniProject.carShowroomManagementSystem.core.util.result.SuccessDataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.SuccessResult;
+import uniProject.carShowroomManagementSystem.dataAccess.TestDriveDao;
+import uniProject.carShowroomManagementSystem.dto.CreateTestDriveRequestDto;
+import uniProject.carShowroomManagementSystem.entity.TestDrive;
 
 @Service
+@RequiredArgsConstructor
 public class TestDriveManager implements TestDriveService{
 	
-	private TestDriveDao testDriveDao;
-	
-	@Autowired
-	public TestDriveManager(TestDriveDao testDriveDao) {
-		this.testDriveDao = testDriveDao;
-	}
+	private final TestDriveDao testDriveDao;
+	private final TestDriveConverter testDriveConverter;
+
 
 	@Override
-	public Result add(TestDriveDto entity) {
+	public Result add(CreateTestDriveRequestDto createTestDriveRequestDto) {
+		TestDrive testDrive = testDriveConverter.toTestDrive(createTestDriveRequestDto);
+		testDriveDao.save(testDrive);
 		return new SuccessResult(Messages.added);
 	}
 
@@ -65,14 +67,12 @@ public class TestDriveManager implements TestDriveService{
 
 	@Override
 	public DataResult<List<TestDrive>> findByIsConfirmTrue() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<TestDrive>>(testDriveDao.findByIsConfirmTrue(), Messages.listed);
 	}
 
 	@Override
 	public DataResult<List<TestDrive>> findByIsConfirmFalse() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<TestDrive>>(testDriveDao.findByIsConfirmFalse(), Messages.listed);
 	}
 
 	@Override

@@ -2,55 +2,34 @@ package uniProject.carShowroomManagementSystem.business.concretes;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import uniProject.carShowroomManagementSystem.business.abstracts.BrandService;
+import lombok.RequiredArgsConstructor;
 import uniProject.carShowroomManagementSystem.business.abstracts.CarService;
-import uniProject.carShowroomManagementSystem.business.abstracts.ColorService;
-import uniProject.carShowroomManagementSystem.business.constants.Messages;
-import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorDataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.Result;
-import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
-import uniProject.carShowroomManagementSystem.dataAccess.abstracts.CarDao;
-import uniProject.carShowroomManagementSystem.entity.concrete.Brand;
-import uniProject.carShowroomManagementSystem.entity.concrete.Car;
-import uniProject.carShowroomManagementSystem.entity.concrete.Color;
+import uniProject.carShowroomManagementSystem.constant.Messages;
+import uniProject.carShowroomManagementSystem.converter.car.CarConverter;
+import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorDataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorResult;
+import uniProject.carShowroomManagementSystem.core.util.result.Result;
+import uniProject.carShowroomManagementSystem.core.util.result.SuccessDataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.SuccessResult;
+import uniProject.carShowroomManagementSystem.dataAccess.CarDao;
 import uniProject.carShowroomManagementSystem.dto.CreateCarRequestDto;
+import uniProject.carShowroomManagementSystem.entity.Car;
 
 @Service
+@RequiredArgsConstructor
 public class CarManager implements CarService{
 
-	private CarDao carDao;
-	private BrandService brandService;
-	private ColorService colorService;
+	private final CarDao carDao;
+	private final CarConverter carConverter;
 	
-	@Autowired
-	public CarManager(CarDao carDao, BrandService brandService, ColorService colorService) {
-		this.carDao = carDao;
-		this.brandService = brandService;
-		this.colorService = colorService;
-	}
 	
 	//polymorphism: inheritance yoluyla
 	@Override
-	public Result add(CreateCarRequestDto entity) {
-		Car car = new Car();
-		
-		car.setName(entity.getName());
-		car.setDescription(entity.getDescription());
-		car.setPrice(entity.getPrice());
-		car.setSaleCount(0);//araba yeni eklendigi icin satisi henuz yapilmadi
-		
-		Brand brand = brandService.getById(entity.getBrandId()).getData();
-		car.setBrand(brand);
-		
-		Color color = colorService.getById(entity.getColorId()).getData();
-		car.setCarColor(color);
-		
+	public Result add(CreateCarRequestDto createCarRequestDto) {
+		Car car = carConverter.toCar(createCarRequestDto);
 		carDao.save(car);
 		return new SuccessResult(Messages.added);
 	}

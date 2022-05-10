@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniProject.carShowroomManagementSystem.business.abstracts.SaleService;
-import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.Result;
-import uniProject.carShowroomManagementSystem.entity.concrete.Car;
-import uniProject.carShowroomManagementSystem.entity.concrete.Sale;
-import uniProject.carShowroomManagementSystem.dto.SaleDto;
+import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.Result;
+import uniProject.carShowroomManagementSystem.dto.CreateSaleRequestDto;
+import uniProject.carShowroomManagementSystem.entity.Car;
+import uniProject.carShowroomManagementSystem.entity.Sale;
 
 @RestController
 @RequestMapping("/api/sales/")
@@ -33,7 +33,7 @@ public class SalesController {
 	}
 
 	@PostMapping("add")
-	public Result add(@RequestBody SaleDto entity) {
+	public Result add(@RequestBody CreateSaleRequestDto entity) {
 		return saleService.add(entity);
 	}
 

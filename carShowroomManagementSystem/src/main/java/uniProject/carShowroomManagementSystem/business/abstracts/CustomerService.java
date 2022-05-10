@@ -2,8 +2,8 @@ package uniProject.carShowroomManagementSystem.business.abstracts;
 
 import uniProject.carShowroomManagementSystem.core.business.AddService;
 import uniProject.carShowroomManagementSystem.core.business.BaseService;
-import uniProject.carShowroomManagementSystem.entity.concrete.Customer;
-import uniProject.carShowroomManagementSystem.dto.CustomerDto;
+import uniProject.carShowroomManagementSystem.dto.CreateCustomerRequestDto;
+import uniProject.carShowroomManagementSystem.entity.Customer;
 
-public interface CustomerService extends BaseService<Customer>, AddService<CustomerDto>{
+public interface CustomerService extends BaseService<Customer>, AddService<CreateCustomerRequestDto>{
 }

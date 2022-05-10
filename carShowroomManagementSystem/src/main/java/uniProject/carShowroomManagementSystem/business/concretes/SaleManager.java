@@ -5,53 +5,36 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
 import uniProject.carShowroomManagementSystem.business.abstracts.CarService;
-import uniProject.carShowroomManagementSystem.business.abstracts.CustomerService;
 import uniProject.carShowroomManagementSystem.business.abstracts.SaleService;
-import uniProject.carShowroomManagementSystem.business.constants.Messages;
-import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorDataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.Result;
-import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
-import uniProject.carShowroomManagementSystem.dataAccess.abstracts.SaleDao;
-import uniProject.carShowroomManagementSystem.entity.concrete.Car;
-import uniProject.carShowroomManagementSystem.entity.concrete.Customer;
-import uniProject.carShowroomManagementSystem.entity.concrete.Sale;
-import uniProject.carShowroomManagementSystem.dto.SaleDto;
+import uniProject.carShowroomManagementSystem.constant.Messages;
+import uniProject.carShowroomManagementSystem.converter.sale.SaleConverter;
+import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorDataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorResult;
+import uniProject.carShowroomManagementSystem.core.util.result.Result;
+import uniProject.carShowroomManagementSystem.core.util.result.SuccessDataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.SuccessResult;
+import uniProject.carShowroomManagementSystem.dataAccess.SaleDao;
+import uniProject.carShowroomManagementSystem.dto.CreateSaleRequestDto;
+import uniProject.carShowroomManagementSystem.entity.Car;
+import uniProject.carShowroomManagementSystem.entity.Sale;
 
 @Service
+@RequiredArgsConstructor
 public class SaleManager implements SaleService{
 	
-	private SaleDao saleDao;
-	private CarService carService;
-	private CustomerService customerService;
+	private final SaleDao saleDao;
+	private final CarService carService;
+	private final SaleConverter saleConverter;
 	
-	@Autowired
-	public SaleManager(SaleDao saleDao, CarService carService, CustomerService customerService) {
-		super();
-		this.saleDao = saleDao;
-		this.carService = carService;
-		this.customerService = customerService;
-	}
 
 	@Override
-	public Result add(SaleDto entity) {
-		Sale sale = new Sale();
-		sale.setConfirm(false);//kullanici alma islemini yapti, fakat daha yonetcicnin onyalamsı gerek
-		sale.setSaleDate(LocalDate.now());
-		
-		Car car = carService.getById(entity.getCarId()).getData(); 
-		//carService.setSaleCount(entity.getCarId());
-		sale.setCar(car);
-		
-		Customer customer = customerService.getById(entity.getCustomerId()).getData();
-		sale.setCustomer(customer);
-		
+	public Result add(CreateSaleRequestDto createSaleRequestDto) {
+		Sale sale = saleConverter.toSale(createSaleRequestDto);
 		saleDao.save(sale);
 		return new SuccessResult(Messages.added);
 	}
@@ -121,7 +104,6 @@ public class SaleManager implements SaleService{
 			return new ErrorResult(Messages.alreadyConfirmed);
 		}
 		sale.setConfirm(true);
-		
 		
 		carService.setSaleCount(sale.getCar().getId());
 		

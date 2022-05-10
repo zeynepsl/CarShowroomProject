@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorResult;
 
 
 //Spring'de bir REST API için istisna işleme mekanizma uygulamasi:

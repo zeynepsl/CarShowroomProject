@@ -5,32 +5,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
 import uniProject.carShowroomManagementSystem.business.abstracts.BrandService;
-import uniProject.carShowroomManagementSystem.business.constants.Messages;
-import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorDataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.Result;
-import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
-import uniProject.carShowroomManagementSystem.dataAccess.abstracts.BrandDao;
-import uniProject.carShowroomManagementSystem.entity.concrete.Brand;
-import uniProject.carShowroomManagementSystem.dto.BrandDto;
+import uniProject.carShowroomManagementSystem.constant.Messages;
+import uniProject.carShowroomManagementSystem.converter.brand.BrandConverter;
+import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorDataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorResult;
+import uniProject.carShowroomManagementSystem.core.util.result.Result;
+import uniProject.carShowroomManagementSystem.core.util.result.SuccessDataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.SuccessResult;
+import uniProject.carShowroomManagementSystem.dataAccess.BrandDao;
+import uniProject.carShowroomManagementSystem.dto.CreateBrandRequestDto;
+import uniProject.carShowroomManagementSystem.entity.Brand;
 
 @Service
+@RequiredArgsConstructor
 public class BrandManager implements BrandService{
 
-	private BrandDao brandDao;
-	
-	@Autowired
-	public BrandManager(BrandDao brandDao) {
-		this.brandDao = brandDao;
-	}
+	private final BrandDao brandDao;
+	private final BrandConverter brandConverter;
 
 	@Override
-	public Result add(BrandDto entity) {
-		Brand brand = new Brand();
-		brand.setName(entity.getName());
+	public Result add(CreateBrandRequestDto createBrandRequestDto) {
+		Brand brand = brandConverter.toBrand(createBrandRequestDto);
 		brandDao.save(brand);
 		return new SuccessResult(Messages.added);
 	}

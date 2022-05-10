@@ -5,33 +5,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
 import uniProject.carShowroomManagementSystem.business.abstracts.RoleService;
-import uniProject.carShowroomManagementSystem.business.constants.Messages;
+import uniProject.carShowroomManagementSystem.constant.Messages;
+import uniProject.carShowroomManagementSystem.converter.role.RoleConverter;
 import uniProject.carShowroomManagementSystem.core.entity.Role;
-import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorDataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.Result;
-import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
-import uniProject.carShowroomManagementSystem.dataAccess.abstracts.RoleDao;
-import uniProject.carShowroomManagementSystem.dto.RoleDto;
+import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorDataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorResult;
+import uniProject.carShowroomManagementSystem.core.util.result.Result;
+import uniProject.carShowroomManagementSystem.core.util.result.SuccessDataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.SuccessResult;
+import uniProject.carShowroomManagementSystem.dataAccess.RoleDao;
+import uniProject.carShowroomManagementSystem.dto.CreateRoleRequestDto;
 
 @Service
+@RequiredArgsConstructor
 public class RoleManager implements RoleService {
 	
-	private RoleDao roleDao;
-	
-	@Autowired
-	public RoleManager(RoleDao roleDao) {
-		super();
-		this.roleDao = roleDao;
-	}
+	private final RoleDao roleDao;
+	private final RoleConverter roleConverter;
 
 	@Override
-	public Result add(RoleDto entity) {
-		Role role = new Role();
-		role.setName(entity.getName());
+	public Result add(CreateRoleRequestDto createRoleRequestDto) {
+		Role role = roleConverter.toRole(createRoleRequestDto);
 		roleDao.save(role);
 		return new SuccessResult(Messages.added);
 	}

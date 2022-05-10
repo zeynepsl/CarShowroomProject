@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniProject.carShowroomManagementSystem.business.abstracts.ColorService;
-import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.Result;
-import uniProject.carShowroomManagementSystem.entity.concrete.Color;
-import uniProject.carShowroomManagementSystem.dto.ColorDto;
+import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.Result;
+import uniProject.carShowroomManagementSystem.dto.CreateColorRequestDto;
+import uniProject.carShowroomManagementSystem.entity.Color;
 
 @RestController
 @RequestMapping("/api/colors/")
@@ -27,7 +27,7 @@ public class ColorsController {
 	}
 	
 	@PostMapping("add")
-	public Result add(@RequestBody ColorDto entity) {
+	public Result add(@RequestBody CreateColorRequestDto entity) {
 		return colorService.add(entity);
 	}
 

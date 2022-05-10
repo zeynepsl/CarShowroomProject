@@ -1,14 +1,12 @@
 package uniProject.carShowroomManagementSystem.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import lombok.Getter;
+import lombok.Setter;
 import uniProject.carShowroomManagementSystem.core.entity.Dto;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-
+@Getter
+@Setter
 public class CreateCarRequestDto implements Dto{
 	private String name;
 	//modelYear

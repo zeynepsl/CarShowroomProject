@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import uniProject.carShowroomManagementSystem.business.abstracts.RoleService;
 import uniProject.carShowroomManagementSystem.core.entity.Role;
-import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.Result;
-import uniProject.carShowroomManagementSystem.dto.RoleDto;
+import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.Result;
+import uniProject.carShowroomManagementSystem.dto.CreateRoleRequestDto;
 
 @RestController
 @RequestMapping("/api/roles/")
@@ -28,7 +28,7 @@ public class RolesController {
 	}
 	
 	@PostMapping("add")
-	public Result add(@RequestBody RoleDto entity) {
+	public Result add(@RequestBody CreateRoleRequestDto entity) {
 		return roleService.add(entity);
 	}
 	

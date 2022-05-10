@@ -5,11 +5,11 @@ import java.util.List;
 
 import uniProject.carShowroomManagementSystem.core.business.AddService;
 import uniProject.carShowroomManagementSystem.core.business.BaseService;
-import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
-import uniProject.carShowroomManagementSystem.entity.concrete.TestDrive;
-import uniProject.carShowroomManagementSystem.dto.TestDriveDto;
+import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
+import uniProject.carShowroomManagementSystem.dto.CreateTestDriveRequestDto;
+import uniProject.carShowroomManagementSystem.entity.TestDrive;
 
-public interface TestDriveService extends BaseService<TestDrive>, AddService<TestDriveDto>{
+public interface TestDriveService extends BaseService<TestDrive>, AddService<CreateTestDriveRequestDto>{
 	DataResult<List<TestDrive>> findByIsConfirmTrue();
 	DataResult<List<TestDrive>> findByIsConfirmFalse();
 	

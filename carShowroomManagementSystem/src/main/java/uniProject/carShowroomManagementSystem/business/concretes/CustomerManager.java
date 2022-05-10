@@ -5,37 +5,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
 import uniProject.carShowroomManagementSystem.business.abstracts.CustomerService;
-import uniProject.carShowroomManagementSystem.business.constants.Messages;
-import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorDataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.Result;
-import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
-import uniProject.carShowroomManagementSystem.dataAccess.abstracts.CustomerDao;
-import uniProject.carShowroomManagementSystem.entity.concrete.Customer;
-import uniProject.carShowroomManagementSystem.dto.CustomerDto;
+import uniProject.carShowroomManagementSystem.constant.Messages;
+import uniProject.carShowroomManagementSystem.converter.customer.CustomerConverter;
+import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorDataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorResult;
+import uniProject.carShowroomManagementSystem.core.util.result.Result;
+import uniProject.carShowroomManagementSystem.core.util.result.SuccessDataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.SuccessResult;
+import uniProject.carShowroomManagementSystem.dataAccess.CustomerDao;
+import uniProject.carShowroomManagementSystem.dto.CreateCustomerRequestDto;
+import uniProject.carShowroomManagementSystem.entity.Customer;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerManager implements CustomerService{
 	
-	private CustomerDao customerDao;
-	
-	@Autowired
-	public CustomerManager(CustomerDao customerDao) {
-		this.customerDao = customerDao;
-	}
+	private final CustomerDao customerDao;
+	private final CustomerConverter customerConverter;
 
 	@Override
-	public Result add(CustomerDto entity) {
-		Customer customer = new Customer();
-		customer.setEmail(entity.getEmail());
-		customer.setFirstName(entity.getFirstName());
-		customer.setLastName(entity.getLastName());
-		customer.setUsername(entity.getUsername());
-		customer.setPhoneNumber(entity.getPhoneNUmber());
-		customer.setPassword(entity.getPassword());
+	public Result add(CreateCustomerRequestDto createCustomerRequestDto) {
+		Customer customer = customerConverter.toCustomer(createCustomerRequestDto);
 		customerDao.save(customer);
 		return new SuccessResult(Messages.added);
 	}

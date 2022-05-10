@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniProject.carShowroomManagementSystem.business.abstracts.CustomerService;
-import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.Result;
-import uniProject.carShowroomManagementSystem.entity.concrete.Customer;
-import uniProject.carShowroomManagementSystem.dto.CustomerDto;
+import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.Result;
+import uniProject.carShowroomManagementSystem.dto.CreateCustomerRequestDto;
+import uniProject.carShowroomManagementSystem.entity.Customer;
 
 @RestController
 @RequestMapping("/api/customers/")
@@ -27,7 +27,7 @@ public class CustomersController {
 	}
 	
 	@PostMapping("add")
-	public Result add(@RequestBody CustomerDto entity) {
+	public Result add(@RequestBody CreateCustomerRequestDto entity) {
 		return customerService.add(entity);
 	}
 	

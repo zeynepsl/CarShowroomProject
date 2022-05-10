@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniProject.carShowroomManagementSystem.business.abstracts.BrandService;
-import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.Result;
-import uniProject.carShowroomManagementSystem.entity.concrete.Brand;
-import uniProject.carShowroomManagementSystem.dto.BrandDto;
+import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.Result;
+import uniProject.carShowroomManagementSystem.dto.CreateBrandRequestDto;
+import uniProject.carShowroomManagementSystem.entity.Brand;
 
 @RestController
 
@@ -39,7 +39,7 @@ public class BrandsController {
 	//localhost:8080/api/brands yazıldığında bu metot çalışmalı
 	//http://localhost:8080/api/brands
 	@PostMapping(path = "/brands")
-	public Result addBrand(@RequestBody BrandDto entity) {
+	public Result addBrand(@RequestBody CreateBrandRequestDto entity) {
 		return brandService.add(entity);
 	}
 	

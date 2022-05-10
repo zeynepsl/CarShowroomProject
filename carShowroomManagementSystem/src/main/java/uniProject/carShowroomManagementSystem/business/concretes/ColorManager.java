@@ -5,32 +5,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
 import uniProject.carShowroomManagementSystem.business.abstracts.ColorService;
-import uniProject.carShowroomManagementSystem.business.constants.Messages;
-import uniProject.carShowroomManagementSystem.core.utility.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorDataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.ErrorResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.Result;
-import uniProject.carShowroomManagementSystem.core.utility.result.SuccessDataResult;
-import uniProject.carShowroomManagementSystem.core.utility.result.SuccessResult;
-import uniProject.carShowroomManagementSystem.dataAccess.abstracts.ColorDao;
-import uniProject.carShowroomManagementSystem.entity.concrete.Color;
-import uniProject.carShowroomManagementSystem.dto.ColorDto;
+import uniProject.carShowroomManagementSystem.constant.Messages;
+import uniProject.carShowroomManagementSystem.converter.color.ColorConverter;
+import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorDataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.ErrorResult;
+import uniProject.carShowroomManagementSystem.core.util.result.Result;
+import uniProject.carShowroomManagementSystem.core.util.result.SuccessDataResult;
+import uniProject.carShowroomManagementSystem.core.util.result.SuccessResult;
+import uniProject.carShowroomManagementSystem.dataAccess.ColorDao;
+import uniProject.carShowroomManagementSystem.dto.CreateColorRequestDto;
+import uniProject.carShowroomManagementSystem.entity.Color;
 
 @Service
+@RequiredArgsConstructor
 public class ColorManager implements ColorService{
 
-	private ColorDao colorDao;
-	
-	@Autowired
-	public ColorManager(ColorDao colorDao) {
-		this.colorDao = colorDao;
-	}
+	private final ColorDao colorDao;
+	private final ColorConverter colorConverter;
 
 	@Override
-	public Result add(ColorDto entity) {
-		Color color = new Color();
-		color.setName(entity.getName());
+	public Result add(CreateColorRequestDto createColorRequestDto) {
+		Color color = colorConverter.toColor(createColorRequestDto);
 		colorDao.save(color);
 		return new SuccessResult(Messages.added);
 	}
