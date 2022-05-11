@@ -1,11 +1,8 @@
 package uniProject.carShowroomManagementSystem.entity;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.*;
 
@@ -23,11 +20,11 @@ public class Sale {
 	@Column(name = "sale_id")
 	private int id;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "car_id")
 	private Car car;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	

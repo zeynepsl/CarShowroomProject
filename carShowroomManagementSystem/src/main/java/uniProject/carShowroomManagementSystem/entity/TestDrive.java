@@ -1,6 +1,9 @@
 package uniProject.carShowroomManagementSystem.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
 
 import lombok.*;
 
@@ -17,18 +20,18 @@ public class TestDrive {
 	@Column(name = "test_drive_id")
 	private int id;
 	
-	/*@ManyToOne
-	@JoinColumn(name = "car_id")
-	private Car car;
-	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "car_id")
+	private Car car;
+	
 	//testdate must be a date in the future or present.
 	@Column(name = "test_date", nullable = false)
-	//@FutureOrPresent
-	private LocalDate testDate;*/
+	@FutureOrPresent
+	private LocalDate testDate;
 	
 	@Column(name = "is_confirm")
 	private boolean isConfirm;

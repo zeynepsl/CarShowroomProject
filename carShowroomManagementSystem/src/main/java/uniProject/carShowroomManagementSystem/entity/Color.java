@@ -1,5 +1,6 @@
 package uniProject.carShowroomManagementSystem.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -28,6 +29,22 @@ public class Color {
 	private String name;
 	
 	@JsonIgnoreProperties
-	@OneToMany(mappedBy = "carColor")
-	private List<Car> cars;
+	@OneToMany(
+			mappedBy = "carColor",
+			cascade = CascadeType.ALL,
+			orphanRemoval = true)
+	private List<Car> cars = new ArrayList<Car>();
+	
+	public Color addCar(Car car) {
+		cars.add(car);
+		car.setCarColor(this);
+		return this;
+	}
+	
+	public Color removeCar(Car car) {
+		cars.remove(car);
+		car.setCarColor(null);
+		return this;
+	}
+
 }
