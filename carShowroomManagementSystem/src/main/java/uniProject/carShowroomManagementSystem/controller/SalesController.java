@@ -6,8 +6,12 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,18 +36,18 @@ public class SalesController {
 		this.saleService = saleService;
 	}
 
-	@PostMapping("add")
+	@PostMapping("/")
 	public Result add(@RequestBody CreateSaleRequestDto entity) {
 		return saleService.add(entity);
 	}
 
-	@PostMapping("delete")
-	public Result delete(@RequestParam int id) {
+	@DeleteMapping("{id}")
+	public Result delete(@PathVariable int id) {
 		return saleService.delete(id);
 	}
 
-	@PostMapping("update")
-	public Result update(Sale entity) {
+	@PutMapping
+	public Result update(@RequestBody Sale entity) {
 		return saleService.update(entity);
 	}
 
@@ -74,11 +78,9 @@ public class SalesController {
 	}
 	
 	@GetMapping("findBySaleDateBetweenOrderBySaleCount")
-	public DataResult<Set<Car>> findBySaleDateBetweenOrderBySaleCount(@RequestParam
-			 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) 
-	LocalDate firstSaleDate, @RequestParam 
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) 
-	LocalDate lastSaleDate){
+	public DataResult<Set<Car>> findBySaleDateBetweenOrderBySaleCount(
+			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate firstSaleDate, 
+			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate lastSaleDate){
 		return saleService.findBySaleDateBetweenOrderBySaleCount(firstSaleDate, lastSaleDate);
 	}
 
@@ -92,8 +94,8 @@ public class SalesController {
 		return saleService.findByCar_Id(carId);
 	}
 
-	@PostMapping("confirmSale")
-	public Result confirmSale(int saleId) {
+	@PatchMapping("confirmSale/{saleId}")
+	public Result confirmSale(@PathVariable int saleId) {
 		return saleService.confirmSale(saleId);
 	}
 }

@@ -2,14 +2,16 @@ package uniProject.carShowroomManagementSystem.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.RequiredArgsConstructor;
 import uniProject.carShowroomManagementSystem.business.abstracts.RoleService;
 import uniProject.carShowroomManagementSystem.core.entity.Role;
 import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
@@ -18,32 +20,27 @@ import uniProject.carShowroomManagementSystem.dto.CreateRoleRequestDto;
 
 @RestController
 @RequestMapping("/api/roles/")
+@RequiredArgsConstructor
 public class RolesController {
-	private RoleService roleService;
-
-	@Autowired
-	public RolesController(RoleService roleService) {
-		super();
-		this.roleService = roleService;
-	}
+	private final RoleService roleService;
 	
-	@PostMapping("add")
+	@PostMapping("/")
 	public Result add(@RequestBody CreateRoleRequestDto entity) {
 		return roleService.add(entity);
 	}
 	
-	@PostMapping("delete")
-	public Result delete(@RequestParam int id) {
+	@DeleteMapping("{id}")
+	public Result delete(@PathVariable int id) {
 		return roleService.delete(id);
 	}
 
-	@PostMapping("update")
+	@PutMapping("/")
 	public Result update(@RequestBody Role entity) {
 		return roleService.update(entity);
 	}
 
-	@GetMapping("getById")
-	public DataResult<Role> getById(@RequestParam int id) {
+	@GetMapping("{id}")
+	public DataResult<Role> getById(@PathVariable int id) {
 		return roleService.getById(id);
 	}
 

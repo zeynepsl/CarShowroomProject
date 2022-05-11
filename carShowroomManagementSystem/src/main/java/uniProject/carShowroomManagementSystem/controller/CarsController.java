@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.validation.constraints.Positive;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.RequiredArgsConstructor;
 import uniProject.carShowroomManagementSystem.business.abstracts.CarService;
 import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
 import uniProject.carShowroomManagementSystem.core.util.result.Result;
@@ -25,13 +25,9 @@ import uniProject.carShowroomManagementSystem.entity.Car;
 @RestController
 @RequestMapping("/api")
 @Validated
+@RequiredArgsConstructor
 public class CarsController {
-	private CarService carService;
-	
-	@Autowired
-	public CarsController(CarService carService) {
-		this.carService = carService;
-	}
+	private final CarService carService;
 	
 	@PostMapping("/cars")
 	public Result add(@RequestBody CreateCarRequestDto entity) {

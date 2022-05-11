@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.RequiredArgsConstructor;
 import uniProject.carShowroomManagementSystem.business.abstracts.BrandService;
 import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
 import uniProject.carShowroomManagementSystem.core.util.result.Result;
@@ -28,13 +29,9 @@ import uniProject.carShowroomManagementSystem.entity.Brand;
 //bu path resourcelarımı karşılıyor
 @RequestMapping("/api/")//hangi path e gelinmesi gerektigini beliritiyorum
 @Validated
+@RequiredArgsConstructor
 public class BrandsController {
-	private BrandService brandService;
-
-	@Autowired
-	public BrandsController(BrandService brandService) {
-		this.brandService = brandService;
-	}
+	private final BrandService brandService;
 	
 	//localhost:8080/api/brands yazıldığında bu metot çalışmalı
 	//http://localhost:8080/api/brands
