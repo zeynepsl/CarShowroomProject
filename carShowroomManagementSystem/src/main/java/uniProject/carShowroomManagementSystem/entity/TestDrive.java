@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.*;
 
 @Entity
@@ -28,12 +30,13 @@ public class TestDrive {
 	@JoinColumn(name = "car_id")
 	private Car car;
 	
+	@Column(name = "is_confirm")
+	private boolean isConfirm;
+	
 	//testdate must be a date in the future or present.
 	@Column(name = "test_date", nullable = false)
 	@FutureOrPresent
+	@JsonFormat(pattern = "dd-MM-yyyy hh:mm")
 	private LocalDate testDate;
-	
-	@Column(name = "is_confirm")
-	private boolean isConfirm;
 	
 }

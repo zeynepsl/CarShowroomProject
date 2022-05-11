@@ -59,6 +59,20 @@ public class TestDriveManager implements TestDriveService{
 		}
 		return new SuccessDataResult<TestDrive>(testDrive, Messages.viewed);
 	}
+	
+	@Override
+	public Result confirmTestDrive(int testDriveId) {
+		TestDrive testDrive = getById(testDriveId).getData();
+		if(testDrive == null) {
+			return new ErrorDataResult<TestDrive>(null, Messages.isNotExist);
+		}
+		if(testDrive.isConfirm()) {
+			return new ErrorResult(Messages.alreadyConfirmed);
+		}
+		testDrive.setConfirm(true);
+		testDriveDao.save(testDrive);
+		return new SuccessResult(Messages.confirmedTestDrive);
+	}
 
 	@Override
 	public DataResult<List<TestDrive>> getAll() {
@@ -77,20 +91,17 @@ public class TestDriveManager implements TestDriveService{
 
 	@Override
 	public DataResult<List<TestDrive>> findBytestDate(LocalDate testDate) {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<TestDrive>>(testDriveDao.findBytestDate(testDate), Messages.listed);
 	}
 
 	@Override
 	public DataResult<List<TestDrive>> findAllByCustomer_Id(int customerId) {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<TestDrive>>(testDriveDao.findAllByCustomer_Id(customerId), Messages.listed);
 	}
 
 	@Override
 	public DataResult<List<TestDrive>> findAllByCar_Id(int carId) {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<TestDrive>>(testDriveDao.findAllByCar_Id(carId), Messages.listed);
 	}
 
 }

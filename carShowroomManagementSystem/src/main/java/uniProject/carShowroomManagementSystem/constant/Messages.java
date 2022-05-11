@@ -1,6 +1,8 @@
 package uniProject.carShowroomManagementSystem.constant;
 
-public class Messages {
+public final class Messages {
+	private Messages() {}
+	
 	public static String userNotFound = "user not found";
 	public static String successLogin = "User login successfully";
 	public static String wrongPassword = "wrong password";
@@ -19,4 +21,5 @@ public class Messages {
 	public static String validationErrors = "validation errors";
 	public static String confirmedSale = "sale confirmed";
 	public static String alreadyConfirmed = "sale already confirmed";
+	public static String confirmedTestDrive = "test drive confirmed";
 }
