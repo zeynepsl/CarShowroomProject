@@ -2,7 +2,6 @@ package uniProject.carShowroomManagementSystem.business.concretes;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -10,14 +9,9 @@ import uniProject.carShowroomManagementSystem.business.abstracts.RoleService;
 import uniProject.carShowroomManagementSystem.constant.Messages;
 import uniProject.carShowroomManagementSystem.converter.role.RoleConverter;
 import uniProject.carShowroomManagementSystem.core.entity.Role;
-import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.util.result.ErrorDataResult;
-import uniProject.carShowroomManagementSystem.core.util.result.ErrorResult;
-import uniProject.carShowroomManagementSystem.core.util.result.Result;
-import uniProject.carShowroomManagementSystem.core.util.result.SuccessDataResult;
-import uniProject.carShowroomManagementSystem.core.util.result.SuccessResult;
+import uniProject.carShowroomManagementSystem.core.util.result.*;
 import uniProject.carShowroomManagementSystem.dataAccess.RoleDao;
-import uniProject.carShowroomManagementSystem.dto.CreateRoleRequestDto;
+import uniProject.carShowroomManagementSystem.dto.role.CreateRoleRequestDto;
 
 @Service
 @RequiredArgsConstructor

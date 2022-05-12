@@ -2,22 +2,19 @@ package uniProject.carShowroomManagementSystem.controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import javax.validation.Valid;
+
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
 import uniProject.carShowroomManagementSystem.business.abstracts.RoleService;
 import uniProject.carShowroomManagementSystem.core.entity.Role;
 import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
 import uniProject.carShowroomManagementSystem.core.util.result.Result;
-import uniProject.carShowroomManagementSystem.dto.CreateRoleRequestDto;
+import uniProject.carShowroomManagementSystem.dto.role.CreateRoleRequestDto;
 
+@Validated
 @RestController
 @RequestMapping("/api/roles/")
 @RequiredArgsConstructor
@@ -25,7 +22,7 @@ public class RolesController {
 	private final RoleService roleService;
 	
 	@PostMapping("/")
-	public Result add(@RequestBody CreateRoleRequestDto entity) {
+	public Result add(@Valid @RequestBody CreateRoleRequestDto entity) {
 		return roleService.add(entity);
 	}
 	

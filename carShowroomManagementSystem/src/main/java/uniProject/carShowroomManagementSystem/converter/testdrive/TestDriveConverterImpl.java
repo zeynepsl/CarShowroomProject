@@ -2,25 +2,29 @@ package uniProject.carShowroomManagementSystem.converter.testdrive;
 
 import org.springframework.stereotype.Component;
 
-import lombok.RequiredArgsConstructor;
-import uniProject.carShowroomManagementSystem.business.abstracts.CarService;
-import uniProject.carShowroomManagementSystem.business.abstracts.CustomerService;
-import uniProject.carShowroomManagementSystem.dto.CreateTestDriveRequestDto;
+import uniProject.carShowroomManagementSystem.dto.testdrive.CreateTestDriveRequestDto;
+import uniProject.carShowroomManagementSystem.dto.testdrive.TestDriveResponseDto;
 import uniProject.carShowroomManagementSystem.entity.TestDrive;
 
 @Component
-@RequiredArgsConstructor
 public class TestDriveConverterImpl implements TestDriveConverter{
-	private final CustomerService customerService;
-	private final CarService carService;
 	
 	@Override
 	public TestDrive toTestDrive(CreateTestDriveRequestDto createTestDriveRequestDto) {
 		TestDrive testDrive = new TestDrive();
-		testDrive.setCar(carService.getById(createTestDriveRequestDto.getCarId()).getData());
-		testDrive.setCustomer(customerService.getById(createTestDriveRequestDto.getCustomerId()).getData());
 		testDrive.setTestDate(createTestDriveRequestDto.getTestDate());
 		testDrive.setConfirm(false);
 		return testDrive;
+	}
+	
+	@Override
+	public TestDriveResponseDto toTestDriveResponseDto(TestDrive testDrive) {
+		TestDriveResponseDto testDriveResponseDto = new TestDriveResponseDto();
+		testDriveResponseDto.setId(testDrive.getId());
+		testDriveResponseDto.setCarId(testDrive.getCar().getId());
+		testDriveResponseDto.setConfirm(testDrive.isConfirm());
+		testDriveResponseDto.setCustomerId(testDrive.getCustomer().getId());
+		testDriveResponseDto.setTestDate(testDrive.getTestDate());
+		return testDriveResponseDto;
 	}
 }

@@ -1,16 +1,19 @@
-package uniProject.carShowroomManagementSystem.dto;
+package uniProject.carShowroomManagementSystem.dto.brand;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.validation.annotation.Validated;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import uniProject.carShowroomManagementSystem.core.entity.Dto;
+import uniProject.carShowroomManagementSystem.core.entity.CreateDto;
 
 @Getter
 @Setter
-public class CreateBrandRequestDto implements Dto{
+@Validated
+public class CreateBrandRequestDto implements CreateDto{
 
-	@NotNull
+	@NotBlank(message = "brand name must not be null and its length must be greater than zero. ")
 	String name;
 }

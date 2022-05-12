@@ -1,19 +1,26 @@
-package uniProject.carShowroomManagementSystem.dto;
+package uniProject.carShowroomManagementSystem.dto.testdrive;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.validation.annotation.Validated;
 
 import lombok.Getter;
 import lombok.Setter;
-import uniProject.carShowroomManagementSystem.core.entity.Dto;
+import uniProject.carShowroomManagementSystem.core.entity.CreateDto;
 
 @Getter
 @Setter
-public class CreateTestDriveRequestDto implements Dto{
+@Validated
+public class CreateTestDriveRequestDto implements CreateDto{
+	
+	@NotNull(message = "car id of testDrive cannot be null")
 	private int carId;
+	
+	@NotNull(message = "customer id of testDrive cannot be null")
 	private int customerId;
 	
-	@JsonFormat(pattern = "dd-MM-yyyy hh:mm")
+	@NotNull(message = "testDate of testDrive cannot be null")
 	private LocalDate testDate;
 }

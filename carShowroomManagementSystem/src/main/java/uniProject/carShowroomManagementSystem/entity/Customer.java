@@ -5,8 +5,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.*;
 
@@ -20,7 +21,9 @@ import uniProject.carShowroomManagementSystem.core.entity.User;
 @PrimaryKeyJoinColumn(name = "user_id")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializier", "handler", "sales"})
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "id")
 public class Customer extends User{
 	/*@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +38,7 @@ public class Customer extends User{
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties
 	@OneToMany(
 			mappedBy = "customer",
 			cascade = CascadeType.ALL, 
@@ -61,7 +64,7 @@ public class Customer extends User{
 	//testdrive ı hibernate ile db ya kaydetme yapmadığım halde
 	//customer oluştururken o customer a atadığım(o an yeni oluşturuyoruz) testDrive ları da db ye kaydedecektir
 	
-	@JsonIgnore
+	@JsonIgnoreProperties
 	@OneToMany(
 			mappedBy = "customer", 
 			cascade = CascadeType.ALL, 

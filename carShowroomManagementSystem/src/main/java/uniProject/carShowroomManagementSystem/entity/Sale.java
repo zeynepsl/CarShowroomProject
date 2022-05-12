@@ -4,6 +4,9 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.*;
 
 @Entity
@@ -13,6 +16,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "id")
 public class Sale {
 	
 	@Id
@@ -30,6 +36,9 @@ public class Sale {
 	
 	@Column(name = "sale_date", nullable = false)
 	private LocalDate saleDate;
+	
+	@Column(name = "price")
+	private double price;
 	
 	@Column(name = "is_confirm")
 	private boolean isConfirm;

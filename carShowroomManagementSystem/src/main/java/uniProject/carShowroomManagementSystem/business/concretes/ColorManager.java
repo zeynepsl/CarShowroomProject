@@ -1,22 +1,18 @@
 package uniProject.carShowroomManagementSystem.business.concretes;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import uniProject.carShowroomManagementSystem.business.abstracts.ColorService;
 import uniProject.carShowroomManagementSystem.constant.Messages;
 import uniProject.carShowroomManagementSystem.converter.color.ColorConverter;
-import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.util.result.ErrorDataResult;
-import uniProject.carShowroomManagementSystem.core.util.result.ErrorResult;
-import uniProject.carShowroomManagementSystem.core.util.result.Result;
-import uniProject.carShowroomManagementSystem.core.util.result.SuccessDataResult;
-import uniProject.carShowroomManagementSystem.core.util.result.SuccessResult;
+import uniProject.carShowroomManagementSystem.core.util.result.*;
 import uniProject.carShowroomManagementSystem.dataAccess.ColorDao;
-import uniProject.carShowroomManagementSystem.dto.CreateColorRequestDto;
+import uniProject.carShowroomManagementSystem.dto.color.ColorResponseDto;
+import uniProject.carShowroomManagementSystem.dto.color.CreateColorRequestDto;
 import uniProject.carShowroomManagementSystem.entity.Color;
 
 @Service
@@ -57,15 +53,36 @@ public class ColorManager implements ColorService{
 		}
 		return new SuccessDataResult<Color>(color, Messages.viewed);
 	}
-
+	
 	@Override
-	public DataResult<List<Color>> getAll() {
-		return new SuccessDataResult<List<Color>>(colorDao.findAll(), Messages.listed);
+	public DataResult<ColorResponseDto> get(int id) {
+		Color color = getById(id).getData();
+		if(color == null) {
+			return new ErrorDataResult<ColorResponseDto>(null, Messages.isNotExist);
+		}
+		return new SuccessDataResult<ColorResponseDto>(colorConverter.toColorResponseDto(color), Messages.viewed);
+	}
+	
+	@Override
+	public List<ColorResponseDto> toColorResponseDtoLis(List<Color> colors){
+		List<ColorResponseDto> colorResponseDtos = new ArrayList<ColorResponseDto>();
+		colors.forEach(color -> {
+			ColorResponseDto colorResponseDto = colorConverter.toColorResponseDto(color);
+			colorResponseDtos.add(colorResponseDto);
+		});
+		return colorResponseDtos;
+	}
+	
+	@Override
+	public DataResult<List<ColorResponseDto>> getAll() {
+		return new SuccessDataResult<List<ColorResponseDto>>(
+				toColorResponseDtoLis(colorDao.findAll()), Messages.listed);
 	}
 
 	@Override
-	public DataResult<List<Color>> findByName(String name) {
-		return new SuccessDataResult<List<Color>>(colorDao.findByName(name), Messages.listed);
+	public DataResult<List<ColorResponseDto>> findByName(String name) {
+		return new SuccessDataResult<List<ColorResponseDto>>(
+				toColorResponseDtoLis(colorDao.findByName(name)), Messages.listed);
 	}
 
 }

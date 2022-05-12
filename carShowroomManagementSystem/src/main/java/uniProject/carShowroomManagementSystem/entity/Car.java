@@ -6,11 +6,12 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.*;
+
 
 @Entity
 @Getter
@@ -18,8 +19,9 @@ import lombok.*;
 @Table(name = "cars")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializier", "handler", "sales"})
-
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "id")
 public class Car {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,9 +40,8 @@ public class Car {
 	//@Size(min = 3, max = 10)
 	private String name;
 	
-	//modelYear
-	@JsonFormat(pattern = "yyyy")
-	private LocalDate modelYear;
+	@Column(name = "model_year")
+	private int modelYear;
 	
 	@Column(name = "price", nullable = false)
 	private double price;
@@ -51,7 +52,7 @@ public class Car {
 	@Column(name = "sale_count")
 	private int saleCount;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties
 	@OneToMany(
 			mappedBy = "car", 
 			cascade = CascadeType.ALL,
@@ -72,7 +73,7 @@ public class Car {
 	
 
 	
-	@JsonIgnore
+	@JsonIgnoreProperties
 	@OneToMany(
 			mappedBy = "car",
 			cascade = CascadeType.ALL,

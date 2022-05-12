@@ -1,7 +1,7 @@
 package uniProject.carShowroomManagementSystem.converter.role;
 
 import uniProject.carShowroomManagementSystem.core.entity.Role;
-import uniProject.carShowroomManagementSystem.dto.CreateRoleRequestDto;
+import uniProject.carShowroomManagementSystem.dto.role.CreateRoleRequestDto;
 
 public interface RoleConverter {
 

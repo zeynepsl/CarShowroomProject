@@ -3,7 +3,7 @@ package uniProject.carShowroomManagementSystem.converter.role;
 import org.springframework.stereotype.Component;
 
 import uniProject.carShowroomManagementSystem.core.entity.Role;
-import uniProject.carShowroomManagementSystem.dto.CreateRoleRequestDto;
+import uniProject.carShowroomManagementSystem.dto.role.CreateRoleRequestDto;
 
 @Component
 public class RoleConverterImpl implements RoleConverter{

@@ -1,22 +1,18 @@
 package uniProject.carShowroomManagementSystem.business.concretes;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import uniProject.carShowroomManagementSystem.business.abstracts.BrandService;
 import uniProject.carShowroomManagementSystem.constant.Messages;
 import uniProject.carShowroomManagementSystem.converter.brand.BrandConverter;
-import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
-import uniProject.carShowroomManagementSystem.core.util.result.ErrorDataResult;
-import uniProject.carShowroomManagementSystem.core.util.result.ErrorResult;
-import uniProject.carShowroomManagementSystem.core.util.result.Result;
-import uniProject.carShowroomManagementSystem.core.util.result.SuccessDataResult;
-import uniProject.carShowroomManagementSystem.core.util.result.SuccessResult;
+import uniProject.carShowroomManagementSystem.core.util.result.*;
 import uniProject.carShowroomManagementSystem.dataAccess.BrandDao;
-import uniProject.carShowroomManagementSystem.dto.CreateBrandRequestDto;
+import uniProject.carShowroomManagementSystem.dto.brand.BrandResponseDto;
+import uniProject.carShowroomManagementSystem.dto.brand.CreateBrandRequestDto;
 import uniProject.carShowroomManagementSystem.entity.Brand;
 
 @Service
@@ -57,15 +53,37 @@ public class BrandManager implements BrandService{
 		}
 		return new SuccessDataResult<Brand>(brand, Messages.viewed);
 	}
-
+	
 	@Override
-	public DataResult<List<Brand>> getAll() {
-		return new SuccessDataResult<List<Brand>>(brandDao.findAll(), Messages.listed);
+	public DataResult<BrandResponseDto> get(int id) {
+		Brand brand = getById(id).getData();
+		if(brand == null) {
+			return new ErrorDataResult<BrandResponseDto>(null, Messages.isNotExist);
+		}
+		return new SuccessDataResult<BrandResponseDto>(brandConverter.toBrandResponseDto(brand), Messages.viewed);
 	}
 
 	@Override
-	public DataResult<List<Brand>> findByName(String name) {
-		return new SuccessDataResult<List<Brand>>(brandDao.findByName(name), Messages.listed);
+	public List<BrandResponseDto> toBrandResponseDtoList(List<Brand> brands){
+		List<BrandResponseDto> brandResponseDtos = new ArrayList<BrandResponseDto>();
+		brands.forEach(brand -> {
+			BrandResponseDto brandResponseDto = brandConverter.toBrandResponseDto(brand);
+			brandResponseDtos.add(brandResponseDto);
+		});
+		return brandResponseDtos;
+	}
+	
+	@Override
+	public DataResult<List<BrandResponseDto>> getAll() {
+		return new SuccessDataResult<List<BrandResponseDto>>(
+				toBrandResponseDtoList(brandDao.findAll()), Messages.listed);
+	}
+	
+
+	@Override
+	public DataResult<List<BrandResponseDto>> findByName(String name) {
+		return new SuccessDataResult<List<BrandResponseDto>>(
+				toBrandResponseDtoList(brandDao.findByName(name)), Messages.listed);
 	}
 
 }
