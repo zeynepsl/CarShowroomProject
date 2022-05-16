@@ -11,7 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
-import uniProject.carShowroomManagementSystem.business.abstracts.SaleService;
+import uniProject.carShowroomManagementSystem.business.SaleService;
 import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
 import uniProject.carShowroomManagementSystem.core.util.result.Result;
 import uniProject.carShowroomManagementSystem.dto.car.CarResponseDto;

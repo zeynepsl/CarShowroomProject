@@ -1,4 +1,4 @@
-package uniProject.carShowroomManagementSystem.business.concretes;
+package uniProject.carShowroomManagementSystem.business.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import uniProject.carShowroomManagementSystem.business.abstracts.BrandService;
+import uniProject.carShowroomManagementSystem.business.BrandService;
 import uniProject.carShowroomManagementSystem.constant.Messages;
 import uniProject.carShowroomManagementSystem.converter.brand.BrandConverter;
 import uniProject.carShowroomManagementSystem.core.util.result.*;
@@ -14,6 +14,8 @@ import uniProject.carShowroomManagementSystem.dataAccess.BrandDao;
 import uniProject.carShowroomManagementSystem.dto.brand.BrandResponseDto;
 import uniProject.carShowroomManagementSystem.dto.brand.CreateBrandRequestDto;
 import uniProject.carShowroomManagementSystem.entity.Brand;
+import uniProject.carShowroomManagementSystem.exception.BaseException;
+import uniProject.carShowroomManagementSystem.exception.BrandServiceOperationException;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +26,9 @@ public class BrandManager implements BrandService{
 
 	@Override
 	public Result add(CreateBrandRequestDto createBrandRequestDto) {
-		
+		if(!(findByName(createBrandRequestDto.getName()).getData().isEmpty())){
+			return new ErrorResult(Messages.alreadyExists);
+		}
 		Brand brand = brandConverter.toBrand(createBrandRequestDto);
 		brandDao.save(brand);
 		return new SuccessResult(Messages.added);
@@ -86,5 +90,6 @@ public class BrandManager implements BrandService{
 		return new SuccessDataResult<List<BrandResponseDto>>(
 				toBrandResponseDtoList(brandDao.findByName(name)), Messages.listed);
 	}
+
 
 }

@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
-import uniProject.carShowroomManagementSystem.business.abstracts.TestDriveService;
+import uniProject.carShowroomManagementSystem.business.TestDriveService;
 import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
 import uniProject.carShowroomManagementSystem.core.util.result.Result;
 import uniProject.carShowroomManagementSystem.dto.testdrive.CreateTestDriveRequestDto;

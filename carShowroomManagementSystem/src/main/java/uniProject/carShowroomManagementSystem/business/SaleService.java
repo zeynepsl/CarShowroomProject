@@ -1,4 +1,4 @@
-package uniProject.carShowroomManagementSystem.business.abstracts;
+package uniProject.carShowroomManagementSystem.business;
 
 import java.time.LocalDate;
 import java.util.List;

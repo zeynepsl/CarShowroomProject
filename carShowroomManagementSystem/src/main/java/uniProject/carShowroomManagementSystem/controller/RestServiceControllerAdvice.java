@@ -21,36 +21,36 @@ public class RestServiceControllerAdvice extends ResponseEntityExceptionHandler{
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public ResponseEntity<?> onDataIntegrityViolationException(DataIntegrityViolationException ex){
-		return ResponseEntity.badRequest().body(new ApiError(ex.getLocalizedMessage()));
+		return ResponseEntity.badRequest().body(new ApiError("DataIntegrityViolationException"));
 	}
 	
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<?> onRuntimeExceptionHandled(RuntimeException ex) {
-		return ResponseEntity.badRequest().body(new ApiError(ex.getLocalizedMessage()));
+		return ResponseEntity.badRequest().body(new ApiError("RuntimeException"));
     }
     
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<?> onConstraintViolationException(ConstraintViolationException ex){
-		return ResponseEntity.badRequest().body(new ApiError(ex.getLocalizedMessage()));
+		return ResponseEntity.badRequest().body(new ApiError("ConstraintViolationException"));
     }
     
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(PropertyValueException.class)
     public ResponseEntity<?> onPropertyValueException(PropertyValueException ex){
-		return ResponseEntity.badRequest().body(new ApiError(ex.getLocalizedMessage()));
+		return ResponseEntity.badRequest().body(new ApiError("PropertyValueException"));
     }
     
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<?> onIllegalArgumentException(IllegalArgumentException ex) {
-		return ResponseEntity.badRequest().body(new ApiError(ex.getLocalizedMessage()));
+		return ResponseEntity.badRequest().body(new ApiError("IllegalArgumentException"));
     }
     
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageConversionException.class)
     public ResponseEntity<?> onHttpMessageConversionException(HttpMessageConversionException ex){
-    	return ResponseEntity.badRequest().body(new ApiError(ex.getLocalizedMessage()));
+    	return ResponseEntity.badRequest().body(new ApiError("HttpMessageConversionException"));
     }
 }

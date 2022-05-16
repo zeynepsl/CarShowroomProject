@@ -1,4 +1,4 @@
-package uniProject.carShowroomManagementSystem.business.concretes;
+package uniProject.carShowroomManagementSystem.business.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import uniProject.carShowroomManagementSystem.business.abstracts.ColorService;
+import uniProject.carShowroomManagementSystem.business.ColorService;
 import uniProject.carShowroomManagementSystem.constant.Messages;
 import uniProject.carShowroomManagementSystem.converter.color.ColorConverter;
 import uniProject.carShowroomManagementSystem.core.util.result.*;
@@ -14,6 +14,8 @@ import uniProject.carShowroomManagementSystem.dataAccess.ColorDao;
 import uniProject.carShowroomManagementSystem.dto.color.ColorResponseDto;
 import uniProject.carShowroomManagementSystem.dto.color.CreateColorRequestDto;
 import uniProject.carShowroomManagementSystem.entity.Color;
+import uniProject.carShowroomManagementSystem.exception.BaseException;
+import uniProject.carShowroomManagementSystem.exception.ColorServiceOperationException;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +26,9 @@ public class ColorManager implements ColorService{
 
 	@Override
 	public Result add(CreateColorRequestDto createColorRequestDto) {
+		if(!(findByName(createColorRequestDto.getName()).getData().isEmpty())) {
+			return new ErrorResult(Messages.alreadyExists);
+		}
 		Color color = colorConverter.toColor(createColorRequestDto);
 		colorDao.save(color);
 		return new SuccessResult(Messages.added);

@@ -25,7 +25,6 @@ public class CustomerConverterImpl implements CustomerConverter{
 		Customer customer = new Customer();
 		customer.setFirstName(createCustomerRequestDto.getFirstName());
 		customer.setLastName(createCustomerRequestDto.getLastName());
-		customer.setUsername(createCustomerRequestDto.getUsername());
 		customer.setEmail(createCustomerRequestDto.getEmail());
 		customer.setPassword(createCustomerRequestDto.getPassword());
 		customer.setPhoneNumber(createCustomerRequestDto.getPhoneNumber());
@@ -40,7 +39,6 @@ public class CustomerConverterImpl implements CustomerConverter{
 		customerResponseDto.setLastName(customer.getLastName());
 		customerResponseDto.setPhoneNumber(customer.getPhoneNumber());
 		customerResponseDto.setEmail(customer.getEmail());
-		customerResponseDto.setUserName(customer.getUsername());
 		
 		List<SaleResponseDto> saleResponseDtos = new ArrayList<SaleResponseDto>();
 		customer.getSales().forEach(sale -> {

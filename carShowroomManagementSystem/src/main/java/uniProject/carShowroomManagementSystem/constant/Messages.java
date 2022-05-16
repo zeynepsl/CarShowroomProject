@@ -22,4 +22,6 @@ public final class Messages {
 	public static String confirmedSale = "sale confirmed";
 	public static String alreadyConfirmed = "sale already confirmed";
 	public static String confirmedTestDrive = "test drive confirmed";
+	public static String alreadyExists = "entity already exists";
+	public static String badCredential = "wrong password or email";
 }

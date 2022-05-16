@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import uniProject.carShowroomManagementSystem.business.abstracts.CarService;
+import uniProject.carShowroomManagementSystem.business.CarService;
 import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
 import uniProject.carShowroomManagementSystem.core.util.result.Result;
 import uniProject.carShowroomManagementSystem.dto.car.CarResponseDto;

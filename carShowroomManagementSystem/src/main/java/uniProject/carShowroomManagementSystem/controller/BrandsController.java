@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
-import uniProject.carShowroomManagementSystem.business.abstracts.BrandService;
+import uniProject.carShowroomManagementSystem.business.BrandService;
 import uniProject.carShowroomManagementSystem.core.util.result.DataResult;
 import uniProject.carShowroomManagementSystem.core.util.result.Result;
 import uniProject.carShowroomManagementSystem.dto.brand.BrandResponseDto;
@@ -32,7 +32,6 @@ public class BrandsController {
 	//http://localhost:8080/api/brands
 	@PostMapping(path = "/brands")
 	public Result addBrand(@Valid @RequestBody CreateBrandRequestDto entity) {
-		brandValidator.brandExist(entity.getName());
 		return brandService.add(entity);
 	}
 	

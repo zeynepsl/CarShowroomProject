@@ -1,11 +1,11 @@
-package uniProject.carShowroomManagementSystem.business.concretes;
+package uniProject.carShowroomManagementSystem.business.impl;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import uniProject.carShowroomManagementSystem.business.abstracts.RoleService;
+import uniProject.carShowroomManagementSystem.business.RoleService;
 import uniProject.carShowroomManagementSystem.constant.Messages;
 import uniProject.carShowroomManagementSystem.converter.role.RoleConverter;
 import uniProject.carShowroomManagementSystem.core.entity.Role;

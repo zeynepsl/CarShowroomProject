@@ -8,8 +8,8 @@ import java.util.Set;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
-import uniProject.carShowroomManagementSystem.business.abstracts.BrandService;
-import uniProject.carShowroomManagementSystem.business.abstracts.ColorService;
+import uniProject.carShowroomManagementSystem.business.BrandService;
+import uniProject.carShowroomManagementSystem.business.ColorService;
 import uniProject.carShowroomManagementSystem.converter.sale.SaleConverter;
 import uniProject.carShowroomManagementSystem.converter.testdrive.TestDriveConverter;
 import uniProject.carShowroomManagementSystem.dto.car.CarResponseDto;

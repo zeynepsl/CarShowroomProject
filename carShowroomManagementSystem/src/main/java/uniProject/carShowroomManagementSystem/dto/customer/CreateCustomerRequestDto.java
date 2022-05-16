@@ -22,9 +22,6 @@ public class CreateCustomerRequestDto implements CreateDto{
 	@NotBlank(message = "lastName must not be null and its length must be greater than zero. ")
 	private String lastName;
 	
-	@NotBlank(message = "firstName must not be null and its length must be greater than zero. ")
-	private String username;
-	
 	@NotBlank(message = "email must not be null and its length must be greater than zero.")
 	@Email
 	private String email;
