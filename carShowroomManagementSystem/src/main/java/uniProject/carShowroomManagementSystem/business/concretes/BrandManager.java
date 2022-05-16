@@ -24,6 +24,7 @@ public class BrandManager implements BrandService{
 
 	@Override
 	public Result add(CreateBrandRequestDto createBrandRequestDto) {
+		
 		Brand brand = brandConverter.toBrand(createBrandRequestDto);
 		brandDao.save(brand);
 		return new SuccessResult(Messages.added);

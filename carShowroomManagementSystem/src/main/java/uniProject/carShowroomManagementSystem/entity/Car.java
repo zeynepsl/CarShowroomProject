@@ -1,14 +1,9 @@
 package uniProject.carShowroomManagementSystem.entity;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.*;
 
@@ -19,9 +14,6 @@ import lombok.*;
 @Table(name = "cars")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(
-		generator = ObjectIdGenerators.PropertyGenerator.class,
-		property = "id")
 public class Car {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,7 +44,6 @@ public class Car {
 	@Column(name = "sale_count")
 	private int saleCount;
 	
-	@JsonIgnoreProperties
 	@OneToMany(
 			mappedBy = "car", 
 			cascade = CascadeType.ALL,
@@ -71,9 +62,6 @@ public class Car {
 		return this;
 	}
 	
-
-	
-	@JsonIgnoreProperties
 	@OneToMany(
 			mappedBy = "car",
 			cascade = CascadeType.ALL,

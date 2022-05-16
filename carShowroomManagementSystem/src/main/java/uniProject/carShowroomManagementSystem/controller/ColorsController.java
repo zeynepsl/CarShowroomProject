@@ -22,6 +22,7 @@ import uniProject.carShowroomManagementSystem.core.util.result.Result;
 import uniProject.carShowroomManagementSystem.dto.color.ColorResponseDto;
 import uniProject.carShowroomManagementSystem.dto.color.CreateColorRequestDto;
 import uniProject.carShowroomManagementSystem.entity.Color;
+import uniProject.carShowroomManagementSystem.validationRule.color.ColorValidator;
 
 @Validated
 @RestController
@@ -29,9 +30,11 @@ import uniProject.carShowroomManagementSystem.entity.Color;
 @RequiredArgsConstructor
 public class ColorsController {
 	private final ColorService colorService;
+	private final ColorValidator colorValidator;
 	
 	@PostMapping("/")
 	public Result add(@Valid @RequestBody CreateColorRequestDto entity) {
+		colorValidator.colorExist(entity.getName());
 		return colorService.add(entity);
 	}
 

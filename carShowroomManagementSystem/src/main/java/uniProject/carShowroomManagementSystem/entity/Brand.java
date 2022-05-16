@@ -6,10 +6,6 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import lombok.*;
 
 @Entity
@@ -18,9 +14,6 @@ import lombok.*;
 @Table(name = "brands")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(
-		generator = ObjectIdGenerators.PropertyGenerator.class,
-		property = "id")
 public class Brand {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +24,7 @@ public class Brand {
 	@NotNull
 	private String name;
 	
-	@JsonIgnoreProperties
+	
 	@OneToMany(
 			mappedBy = "brand", 
 			cascade = CascadeType.ALL,

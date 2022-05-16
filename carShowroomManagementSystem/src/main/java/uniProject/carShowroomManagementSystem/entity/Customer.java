@@ -5,25 +5,19 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import lombok.*;
 
 import uniProject.carShowroomManagementSystem.core.entity.User;
 
+//@EqualsAndHashCode(callSuper = false)
+
 @Entity
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = false)
 @Table(name = "customers")
 @PrimaryKeyJoinColumn(name = "user_id")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(
-		generator = ObjectIdGenerators.PropertyGenerator.class,
-		property = "id")
 public class Customer extends User{
 	/*@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,8 +31,7 @@ public class Customer extends User{
 	
 	@Column(name = "phone_number")
 	private String phoneNumber;
-	
-	@JsonIgnoreProperties
+
 	@OneToMany(
 			mappedBy = "customer",
 			cascade = CascadeType.ALL, 
@@ -64,7 +57,6 @@ public class Customer extends User{
 	//testdrive ı hibernate ile db ya kaydetme yapmadığım halde
 	//customer oluştururken o customer a atadığım(o an yeni oluşturuyoruz) testDrive ları da db ye kaydedecektir
 	
-	@JsonIgnoreProperties
 	@OneToMany(
 			mappedBy = "customer", 
 			cascade = CascadeType.ALL, 

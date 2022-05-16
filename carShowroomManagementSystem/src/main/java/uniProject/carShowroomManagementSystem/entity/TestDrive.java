@@ -5,9 +5,6 @@ import java.time.LocalDate;
 import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import lombok.*;
 
 @Entity
@@ -16,9 +13,6 @@ import lombok.*;
 @Table(name = "testDrives")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(
-		generator = ObjectIdGenerators.PropertyGenerator.class,
-		property = "id")
 public class TestDrive {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

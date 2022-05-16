@@ -6,10 +6,6 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import lombok.*;
 
 @Entity
@@ -18,9 +14,6 @@ import lombok.*;
 @Table(name = "colors")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(
-		generator = ObjectIdGenerators.PropertyGenerator.class,
-		property = "id")
 public class Color {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +24,6 @@ public class Color {
 	@Size(min = 3, max = 10)
 	private String name;
 	
-	@JsonIgnoreProperties
 	@OneToMany(
 			mappedBy = "carColor",
 			cascade = CascadeType.ALL,

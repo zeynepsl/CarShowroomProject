@@ -1,7 +1,5 @@
 package uniProject.carShowroomManagementSystem.converter.sale;
 
-import java.time.LocalDate;
-
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
