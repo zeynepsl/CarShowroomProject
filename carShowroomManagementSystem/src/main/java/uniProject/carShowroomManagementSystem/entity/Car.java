@@ -79,4 +79,22 @@ public class Car {
 		testDrive.setCar(null);
 		return this;
 	}
+	
+	@OneToMany(
+			mappedBy = "car",
+			cascade = CascadeType.ALL,
+			orphanRemoval = true)
+	private List<CarImage> carImages = new ArrayList<CarImage>();
+	
+	public Car addImage(CarImage carImage) {
+		carImages.add(carImage);
+		carImage.setCar(this);
+		return this;
+	}
+	
+	public Car removeImage(CarImage carImage) {
+		carImages.remove(carImage);
+		carImage.setCar(null);
+		return this;
+	}
 }

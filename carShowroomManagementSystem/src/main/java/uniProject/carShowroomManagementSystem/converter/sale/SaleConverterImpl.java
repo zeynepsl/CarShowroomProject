@@ -14,7 +14,7 @@ public class SaleConverterImpl implements SaleConverter{
 	@Override
 	public Sale toSale(CreateSaleRequestDto createSaleRequestDto) {
 		Sale sale = new Sale();
-		sale.setConfirm(false);//kullanici alma islemini yapti, fakat daha yonetcicnin onyalamsı gerek
+		sale.setIsConfirm(false);//kullanici alma islemini yapti, fakat daha yonetcicnin onyalamsı gerek
 		return sale;
 	}
 	
@@ -23,7 +23,7 @@ public class SaleConverterImpl implements SaleConverter{
 		SaleResponseDto saleResponseDto = new SaleResponseDto();
 		saleResponseDto.setId(sale.getId());
 		saleResponseDto.setCarId(sale.getCar().getId());
-		saleResponseDto.setConfirm(sale.isConfirm());
+		saleResponseDto.setConfirm(sale.getIsConfirm());
 		saleResponseDto.setCustomerId(sale.getCustomer().getId());
 		saleResponseDto.setPrice(sale.getPrice());
 		saleResponseDto.setSaleDate(sale.getSaleDate());

@@ -130,11 +130,11 @@ public class SaleManager implements SaleService{
 		if(sale == null) {
 			return new ErrorResult(Messages.isNotExist);
 		}
-		if(sale.isConfirm()) {
+		if(sale.getIsConfirm()) {
 			return new ErrorResult(Messages.alreadyConfirmed);
 		}
-		sale.setConfirm(true);
-		sale.setSaleDate(LocalDate.now());//yonetici satisi onayladiginda  satis tarihini  de guncelleniyor
+		sale.setIsConfirm(true);
+		sale.setSaleDate(LocalDate.now());//yonetici satisi onayladiginda  satis tarihi  de guncelleniyor
 		
 		carService.setSaleCount(sale.getCar().getId());
 		
